@@ -51,7 +51,7 @@ def check_logs(taskid,feedback):
         print("回执验证成功！")
         return 1
     else:
-        print("回执验证失败！！")
+        print("回执验证失败！1222222111111！")
         return 0
 
     # print("SUCCESS_LOG = " + SUCCESS_LOG)
