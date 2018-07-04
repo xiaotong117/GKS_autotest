@@ -50,7 +50,7 @@ def check_logs(taskid,feedback):
         print("回执验证成功！")
         return 1
     else:
-        print("回执验证失败！")
+        print("回执验证失败！1222222111111！")
         return 0
 
 # 下拉查看通知，查看到了之后点击通知
