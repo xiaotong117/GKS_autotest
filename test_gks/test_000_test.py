@@ -2,37 +2,35 @@
 # -*- coding: utf-8 -*-
 
 from appium import webdriver
+import unittest
 import tools
 import configs
 
-class TestPopup:
-    def __init__(self,cid,appid):
+TITLE = "测试"
+FEEDBACK = [0, 1, 100]
+
+class Test(unittest.TestCase):
+    def __init__(self, driver, cid, appid):
+        self.driver = driver
         self.cid = cid
         self.appid = appid
         pass
 
     def run(self):
         # 推送动作连
-        taskid = tools.push_notification(self.cid,self.appid,configs.ACTIONCHAIN_POPUP)
-        # 1.下拉查看通知
-        score = 0
-        self.driver.open_notifications()
-        title = self.driver.find_elements_by_class_name('android.widget.TextView')
-        for t in title:
-            if TITLE.decode('utf-8') in t.text:
-                score += 1
-                t.click()
-                break
+        taskid = tools.push_notification(self.cid,configs.ACTIONCHAIN(self.appid))
 
-        #2.截图过程
-        tools.screenshots(test_000_test)
+        # 1.下拉查看通知
+        score = tools.pull_down_nitification(self.driver,TITLE)
+
+        # 2.截图过程
+        tools.screenshots("test_000_test")
 
         # 3.查看日志
-        feedback = [1]
-        if tools.check_logs(taskd,feedback) > 0:
+        if tools.check_logs(taskid,FEEDBACK) > 0:
             score += 1
 
-
+        # 4.结果校验
         if score > 1:
             print("验证成功！")
         else :

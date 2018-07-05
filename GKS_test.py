@@ -8,6 +8,7 @@ import requests,time,unittest,os,base64
 import tools
 import configs
 from test_gks.gks_001_popup import TestPopup
+from test_gks.test_000_test import Test
 
 
 class GKS_Test(unittest.TestCase):
@@ -18,9 +19,9 @@ class GKS_Test(unittest.TestCase):
         desired_caps['platformVersion'] = '4.1'  # 安卓版本，这里要根据自己手机进行修改
         desired_caps['deviceName'] = '16a94b82'  # 设备名称，通过adb devices获取
         desired_caps['appPackage'] = configs.PKG_name  # 要打开的app名称
-        desired_caps['appActivity'] = 'com.getui.demo.GetuiSdkDemoActivity'
-        self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-        time.sleep(5)
+        desired_caps['appActivity'] = 'com.getui.lbs.GetuiSdkDemoActivity'
+        self.driver = webdriver.Remote('http://127.0.0.1:4727/wd/hub', desired_caps)
+        time.sleep(15)
         # 获取cid和appid
         self.cid = self.driver.find_element_by_id(configs.PKG_name + ":id/tvclientid").text
         appidm = self.driver.find_element_by_id(configs.PKG_name + ":id/tvappid").text
@@ -42,16 +43,17 @@ class GKS_Test(unittest.TestCase):
     # 测试，系统通知
     def test_000_test(self):
         # 打印开头日志
-        tools.log_start(test_000_test)
+        tools.log_start("test_000_test")
         # 运行测例
-        TestPopup(self.cid,self.appid).run()
+        Test(self.driver,self.cid,self.appid).run()
         # 打印结束日志
-        tools.end()
+        tools.log_end()
+
     # 测例1：popup弹框
-    def test_001_popup(self):
-        # 打印开头日志
-        tools.log_start(test_001_popup)
-        # 运行测例
-        TestPopup(self.cid,self.appid).run()
-        # 打印结束日志
-        tools.end()
+    # def test_001_popup(self):
+    #     # 打印开头日志
+    #     tools.log_start(test_001_popup)
+    #     # 运行测例
+    #     #TestPopup(self.cid,self.appid).run()
+    #     # 打印结束日志
+    #     tools.end()
