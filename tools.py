@@ -19,7 +19,8 @@ def push_notification(cid,actionchain):
     s.post(configs.URL1, data=configs.MYCOOKIE)
     r = s.post(configs.URL2(cid,actionchain))
     time.sleep(5)
-    # print (r.text)
+    print actionchain
+    print (r)
     list = r.text.split(':')
     # print (list[0])
     taskID = list[1].strip()

@@ -21,7 +21,7 @@ class TestPopup:
         for e in ele:
             e.click()
 
-        taskid = tools.push_notification(self.cid,configs.ACTIONCHAIN_POPUP1(self.appid))
+        taskid1 = tools.push_notification(self.cid,configs.ACTIONCHAIN_POPUP(self.appid, 4))
 
         # score = tools.pull_down_nitification(self.driver, TITLE)
         title = self.driver.find_elements_by_class_name('android.widget.TextView')[0]
@@ -29,22 +29,30 @@ class TestPopup:
         if TITLE.decode('utf-8') in title.text:
             score = 1
 
-        btn = self.driver.find_elements_by_class_name('android.widget.Button')[0]
-        if BTN_TEXT.decode('utf-8') in btn.text:
+        btn1 = self.driver.find_elements_by_class_name('android.widget.Button')[0]
+        if BTN_TEXT.decode('utf-8') in btn1.text:
                 score += 1
 
+        # 2.截图过程
+        tools.screenshots(self.driver, "test_001_popup1")
+
+        taskid2 = tools.push_notification(self.cid,configs.ACTIONCHAIN_POPUP(self.appid, 5))
+        btn2 = self.driver.find_elements_by_class_name('android.widget.Button')[0]
+        if BTN_TEXT.decode('utf-8') in btn2.text:
+            score += 1
 
         # 2.截图过程
-        tools.screenshots(self.driver, "test_001_popup")
-        btn.click()
-        tools.screenshots(self.driver, "test_001_popup")
+        tools.screenshots(self.driver, "test_001_popup2")
+
 
         # 3.查看日志
-        if tools.check_logs(self.driver, taskid, FEEDBACK) > 0:
+        if tools.check_logs(self.driver, taskid1, FEEDBACK) > 0:
+            score += 1
+        if tools.check_logs(self.driver, taskid2, FEEDBACK) > 0:
             score += 1
 
         # 4.结果校验
-        if score > 2:
+        if score > 4:
             print("验证成功！")
         else:
             print("验证失败...")

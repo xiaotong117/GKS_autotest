@@ -41,19 +41,19 @@ class GKS_Test(unittest.TestCase):
         self.driver.quit()
 
     # 测试，系统通知
-    def test_000_test(self):
-        # 打印开头日志
-        tools.log_start("test_000_test")
-        # 运行测例
-        Test(self.driver,self.cid,self.appid).run()
-        # 打印结束日志
-        tools.log_end()
+    # def test_000_test(self):
+    #     # 打印开头日志
+    #     tools.log_start("test_000_test")
+    #     # 运行测例
+    #     Test(self.driver,self.cid,self.appid).run()
+    #     # 打印结束日志
+    #     tools.log_end()
 
     # 测例1：popup弹框
-    # def test_001_popup(self):
-    #     # 打印开头日志
-    #     tools.log_start(test_001_popup)
-    #     # 运行测例
-    #     #TestPopup(self.cid,self.appid).run()
-    #     # 打印结束日志
-    #     tools.end()
+    def test_001_popup(self):
+        # 打印开头日志
+        tools.log_start("test_001_popup")
+        # 运行测例
+        TestPopup(self.driver,self.cid,self.appid).run()
+        # 打印结束日志
+        tools.end()
