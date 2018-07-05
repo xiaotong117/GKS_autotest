@@ -1,15 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from appium import webdriver
-import unittest
-import tools
+import tools,time
 import configs
 
 TITLE = "测试"
 FEEDBACK = [0, 1, 100]
 
-class Test(unittest.TestCase):
+class Test:
     def __init__(self, driver, cid, appid):
         self.driver = driver
         self.cid = cid
@@ -17,6 +15,12 @@ class Test(unittest.TestCase):
         pass
 
     def run(self):
+        # 下拉通知栏，清空所有通知
+        self.driver.open_notifications()
+        ele = self.driver.find_elements_by_id("com.android.systemui:id/clear_all_button")
+        for e in ele:
+            e.click()
+
         # 推送动作连
         taskid = tools.push_notification(self.cid,configs.ACTIONCHAIN(self.appid))
 
@@ -24,10 +28,12 @@ class Test(unittest.TestCase):
         score = tools.pull_down_nitification(self.driver,TITLE)
 
         # 2.截图过程
-        tools.screenshots("test_000_test")
+        self.driver.open_notifications()
+        time.sleep(2)
+        tools.screenshots(self.driver,"test_000_test")
 
         # 3.查看日志
-        if tools.check_logs(taskid,FEEDBACK) > 0:
+        if tools.check_logs(self.driver,taskid,FEEDBACK) > 0:
             score += 1
 
         # 4.结果校验
@@ -35,4 +41,4 @@ class Test(unittest.TestCase):
             print("验证成功！")
         else :
             print("验证失败...")
-            print(score)
+            print("score = " + str(score))
