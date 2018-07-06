@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import tools,time
-import configs
+import tools,time,action_chain
 
 TITLE = "测试"
 FEEDBACK = [0, 1, 100]
@@ -22,7 +21,7 @@ class Test:
             e.click()
 
         # 推送动作连
-        taskid = tools.push_notification(self.cid,configs.ACTIONCHAIN(self.appid))
+        taskid = tools.push_notification(self.cid,action_chain.ACTIONCHAIN(self.appid))
 
         # 1.下拉查看通知
         score = tools.pull_down_nitification(self.driver,TITLE)
