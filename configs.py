@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -11,8 +12,7 @@ PKG_name = "com.getui.lbs"
 MYCOOKIE = {'username': 'admin', 'password': 'Toolbox@getui2018!'}
 URL1 = "http://172.16.14.130:8090/login.htm"
 
-def URL2(cid,actionchain):
-    url = 'http://172.16.14.130:8090/pushTest.htm?' + 'clientID=' + cid.decode('utf-8') + '&clientData=' + actionchain.decode('utf-8')
-    return url.decode('utf-8')
+# 两个%s，一个为cid，一个为动作链
+URL2 = "http://172.16.14.130:8090/pushTest.htm?clientID=%s&clientData=%s."
 
 

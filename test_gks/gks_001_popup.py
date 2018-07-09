@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import tools, action_chain
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 TITLE = "测试"
 BTN_TEXT = "安装"
@@ -21,7 +25,7 @@ class TestPopup:
             e.click()
 
         # 类型4
-        taskid1 = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_POPUP(self.appid, 4))
+        taskid1 = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_POPUP%(self.appid, "4"))
         title = self.driver.find_elements_by_class_name('android.widget.TextView')[0]
         score = 0
         if TITLE.decode('utf-8') in title.text:
@@ -35,7 +39,7 @@ class TestPopup:
 
         # 类型5
 
-        taskid2 = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_POPUP(self.appid, 5))
+        taskid2 = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_POPUP(self.appid, "5"))
         btn2 = self.driver.find_elements_by_class_name('android.widget.Button')[0]
         if BTN_TEXT.decode('utf-8') in btn2.text:
             score += 1

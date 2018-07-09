@@ -1,9 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from appium import webdriver
 import requests,time,unittest,os,base64
 import configs
+import sys,os
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+NULL = ""
+ERROR_CODE = 0
+SUCCESS_CODE = 1
 
 def log_start(casename):
     print("\n********************************************************************")
@@ -13,21 +20,32 @@ def log_end():
     print("\n************************ end ************************")
     print("**********************************************************************\n")
 
+def assertResult(self,result,targetvalue = SUCCESS_CODE):
+    if result != targetvalue:
+        raise self.failureException('result:' + str(result))
+    pass
+
+def assertEqual(self,first, second, msg=''):
+    if first != second:
+        raise self.failureException(msg)
+    pass
+
+def assertNotEqual(self,first, second, msg=''):
+    if first == second:
+        raise self.failureException(msg)
+    pass
+
 # 推送动作链功能
 def push_notification(cid,actionchain):
     s = requests.session()
     s.post(configs.URL1, data=configs.MYCOOKIE)
-    r = s.post(configs.URL2(cid,actionchain))
+    r = s.post(configs.URL2%(cid,actionchain))
     time.sleep(5)
     print actionchain
     print (r)
     list = r.text.split(':')
     # print (list[0])
     taskID = list[1].strip()
-    if taskID == "":
-        print("动作连发送失败！")
-    else:
-        print("taskID = " + taskID)
     return taskID
 
 # 截图功能
@@ -37,8 +55,13 @@ def screenshots(driver,casename):
         # mkdir只能在已存在的文件夹里创建子文件夹。如果想实现程序想要的直接创建多级目录的目标，则需要另外一个函数“makedirs”
         os.makedirs("./screenshots/")
 
-    driver.get_screenshot_as_file("./screenshots/" + casename + "_" + time.strftime("%Y%m%d_%H%M%S", time.localtime()) + ".png")
+    photo = "./screenshots/" + casename + "_" + time.strftime("%Y%m%d_%H%M%S", time.localtime()) + ".png"
+    driver.get_screenshot_as_file(photo)
     # 截图失败，不是同一级目录
+    if os.path.exists(photo):
+        return SUCCESS_CODE
+    else:
+        return ERROR_CODE
 
 # 查看日志
 def check_logs(driver,taskid,feedback):
@@ -47,22 +70,20 @@ def check_logs(driver,taskid,feedback):
     logs = base64.b64decode(logsfile).decode('utf-8')#先解码byte转字符串，再用utf-8编码
     x = 0
     for i in feedback:
-        SUCCESS_LOG = taskid.decode('utf-8') + "|" + str(i).decode('utf-8') + '\n'
-        if SUCCESS_LOG.decode('utf-8') in logs:
+        SUCCESS_LOG = taskid + "|" + str(i)
+        if SUCCESS_LOG in logs:
             x = x + 1
             continue
     if x == len(feedback):
-        print("回执验证成功！")
-        return 1
+        return SUCCESS_CODE
     else:
-        print("回执验证失败！")
-        return 0
+        return ERROR_CODE
 
 # 下拉查看通知，查看到了之后点击通知
 def pull_down_nitification(driver,text):
     driver.open_notifications()
     title = driver.find_elements_by_class_name('android.widget.TextView')
     for t in title:
-        if text.decode('utf-8') in t.text:
-            return 1
-    return 0
+        if text == t.text:
+            return SUCCESS_CODE
+    return ERROR_CODE

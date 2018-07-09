@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import tools,time,action_chain
+import sys
 
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+CASE = "test_000_test"
 TITLE = "测试"
 FEEDBACK = [0, 1, 100]
 
@@ -21,23 +26,24 @@ class Test:
             e.click()
 
         # 推送动作连
-        taskid = tools.push_notification(self.cid,action_chain.ACTIONCHAIN(self.appid))
+        taskid = tools.push_notification(self.cid,action_chain.ACTIONCHAIN%(self.appid))
+        tools.assertNotEqual(self, taskid, tools.NULL, "动作连发送失败！")
+        print "动作连发送成功！"
 
         # 1.下拉查看通知
-        score = tools.pull_down_nitification(self.driver,TITLE)
+        result1 = tools.pull_down_nitification(self.driver,TITLE)
+        tools.assertEqual(self,result1,tools.SUCCESS_CODE,"通知验证失败！")
+        print "通知验证成功！"
 
         # 2.截图过程
         self.driver.open_notifications()
         time.sleep(2)
-        tools.screenshots(self.driver,"test_000_test")
+        result2 = tools.screenshots(self.driver,"CASE")
+        tools.assertEqual(self, result2, tools.SUCCESS_CODE, "截图失败！")
+        print "截图成功！"
 
         # 3.查看日志
-        if tools.check_logs(self.driver,taskid,FEEDBACK) > 0:
-            score += 1
+        result3 = tools.check_logs(self.driver,taskid,FEEDBACK)
+        tools.assertEqual(self, result3, tools.SUCCESS_CODE, "日志验证失败！")
 
-        # 4.结果校验
-        if score > 1:
-            print("验证成功！")
-        else :
-            print("验证失败...")
-            print("score = " + str(score))
+        print(CASE + " 验证成功！")
