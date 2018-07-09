@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import requests,time,unittest,os,base64
+import requests,time,os,base64
 import configs
 import sys,os
 
@@ -22,17 +22,17 @@ def log_end():
 
 def assertResult(self,result,targetvalue = SUCCESS_CODE):
     if result != targetvalue:
-        raise self.failureException('result:' + str(result))
+        raise AssertionError('result:' + str(result))
     pass
 
 def assertEqual(self,first, second, msg=''):
     if first != second:
-        raise self.failureException(msg)
+        raise AssertionError(msg)
     pass
 
 def assertNotEqual(self,first, second, msg=''):
     if first == second:
-        raise self.failureException(msg)
+        raise AssertionError(msg)
     pass
 
 # 推送动作链功能
@@ -41,11 +41,12 @@ def push_notification(cid,actionchain):
     s.post(configs.URL1, data=configs.MYCOOKIE)
     r = s.post(configs.URL2%(cid,actionchain))
     time.sleep(5)
-    print actionchain
-    print (r)
+    # print actionchain
+    # print (r)
     list = r.text.split(':')
     # print (list[0])
-    taskID = list[1].strip()
+    messageID = list[1].strip()
+    taskID = messageID.split('-')[2]
     return taskID
 
 # 截图功能
@@ -55,6 +56,8 @@ def screenshots(driver,casename):
         # mkdir只能在已存在的文件夹里创建子文件夹。如果想实现程序想要的直接创建多级目录的目标，则需要另外一个函数“makedirs”
         os.makedirs("./screenshots/")
 
+    driver.open_notifications()
+    time.sleep(3)
     photo = "./screenshots/" + casename + "_" + time.strftime("%Y%m%d_%H%M%S", time.localtime()) + ".png"
     driver.get_screenshot_as_file(photo)
     # 截图失败，不是同一级目录
@@ -82,6 +85,7 @@ def check_logs(driver,taskid,feedback):
 # 下拉查看通知，查看到了之后点击通知
 def pull_down_nitification(driver,text):
     driver.open_notifications()
+    time.sleep(3)
     title = driver.find_elements_by_class_name('android.widget.TextView')
     for t in title:
         if text == t.text:

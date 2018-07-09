@@ -45,3 +45,6 @@ if x == len(feedback):
 #     print("回执验证成功！")
 # else:
 #     print("回执验证失败！")
+messageID = "OSS-0709-N1DCjshJYUAyFvOGc2Dr08"
+taskID = messageID.split('-')[2]
+print taskID
