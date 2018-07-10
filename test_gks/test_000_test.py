@@ -34,17 +34,18 @@ class Test:
         # 1.截图过程
         self.driver.open_notifications()
         time.sleep(2)
-        result2 = tools.screenshots(self.driver,CASE)
-        tools.assertEqual(self, result2, tools.SUCCESS_CODE, "截图失败！")
+        result1 = tools.screenshots(self.driver,CASE)
+        tools.assertEqual(self, result1, tools.SUCCESS_CODE, "截图失败！")
         print "截图成功！"
 
-        # 2.下拉查看通知
-        result1 = tools.pull_down_nitification(self.driver, TITLE)
-        tools.assertEqual(self, result1, tools.SUCCESS_CODE, "通知验证失败！")
+        # 2.下拉查看通知并点击
+        result2 = tools.pull_down_nitification(self.driver, TITLE)
+        tools.assertEqual(self, result2, tools.SUCCESS_CODE, "通知验证失败！")
         print "通知验证成功！"
 
         # 3.查看日志
         result3 = tools.check_logs(self.driver,taskid,FEEDBACK)
         tools.assertEqual(self, result3, tools.SUCCESS_CODE, "日志验证失败！")
+        print "日志验证成功！"
 
         print(CASE + " 验证成功！")

@@ -74,9 +74,11 @@ def check_logs(driver,taskid,feedback):
     x = 0
     for i in feedback:
         SUCCESS_LOG = taskid + "|" + str(i)
+        print SUCCESS_LOG
         if SUCCESS_LOG in logs:
             x = x + 1
             continue
+    print len(feedback)
     if x == len(feedback):
         return SUCCESS_CODE
     else:
@@ -89,5 +91,37 @@ def pull_down_nitification(driver,text):
     title = driver.find_elements_by_class_name('android.widget.TextView')
     for t in title:
         if text == t.text:
+            t.click()
             return SUCCESS_CODE
     return ERROR_CODE
+
+# 查看popup弹框，验证title和按钮文本，并点击
+def popup_nitification(driver,type,text1,text2):
+    x = 0
+    y = 0
+    if type == 4:
+        title1 = driver.find_elements_by_class_name('android.widget.TextView')
+        for t in title1:
+            if text1 == t.text:
+                x += 1
+                break
+        title2 = driver.find_elements_by_class_name('android.widget.Button')
+        for t in title2:
+            if text2 == t.text:
+                x += 1
+                t.click()
+                break
+        if x == 2:
+            return SUCCESS_CODE
+        else: return ERROR_CODE
+
+    if type == 5:
+        title3 = driver.find_elements_by_class_name('android.widget.Button')
+        for t in title3:
+            if text2 == t.text:
+                y += 1
+                t.click()
+                break
+        if y == 1:
+            return SUCCESS_CODE
+        else: return ERROR_CODE

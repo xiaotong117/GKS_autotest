@@ -7,6 +7,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+CASE = "gks_001_popup"
 TITLE = "测试"
 BTN_TEXT = "安装"
 FEEDBACK = [0,1,40001]
@@ -26,41 +27,42 @@ class TestPopup:
 
         # 类型4
         taskid1 = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_POPUP%(self.appid, "4"))
-        title = self.driver.find_elements_by_class_name('android.widget.TextView')[0]
-        score = 0
-        if TITLE.decode('utf-8') in title.text:
-            score = 1
+        tools.assertNotEqual(self, taskid1, tools.NULL, "动作连1发送失败！")
+        print "动作连1发送成功！"
+        print taskid1
 
-        btn1 = self.driver.find_elements_by_class_name('android.widget.Button')[0]
-        if BTN_TEXT.decode('utf-8') in btn1.text:
-                score += 1
+        result1 = tools.screenshots(self.driver, CASE)
+        tools.assertEqual(self, result1, tools.SUCCESS_CODE, "截图1失败！")
+        print "截图1成功！"
 
-        tools.screenshots(self.driver, "test_001_popup1")
+        result2 = tools.popup_nitification(self.driver, 4, TITLE, BTN_TEXT)
+        tools.assertEqual(self, result2, tools.SUCCESS_CODE, "弹框1验证失败！")
+        print "弹框1验证成功！"
+
+        result3 = tools.check_logs(self.driver, taskid1, FEEDBACK)
+        tools.assertEqual(self, result3, tools.SUCCESS_CODE, "日志1验证失败！")
+        print "日志1验证成功！"
 
         # 类型5
-
         taskid2 = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_POPUP(self.appid, "5"))
-        btn2 = self.driver.find_elements_by_class_name('android.widget.Button')[0]
-        if BTN_TEXT.decode('utf-8') in btn2.text:
-            score += 1
+        tools.assertNotEqual(self, taskid2, tools.NULL, "动作连2发送失败！")
+        print "动作连2发送成功！"
+        print taskid2
 
-        tools.screenshots(self.driver, "test_001_popup2")
+        result4 = tools.screenshots(self.driver, CASE)
+        tools.assertEqual(self, result4, tools.SUCCESS_CODE, "截图2失败！")
+        print "截图2成功！"
+
+        result5 = tools.popup_nitification(self.driver, 5, TITLE, BTN_TEXT)
+        tools.assertEqual(self, result5, tools.SUCCESS_CODE, "弹框2验证失败！")
+        print "弹框1验证成功！"
+
+        result6 = tools.check_logs(self.driver, taskid2, FEEDBACK)
+        tools.assertEqual(self, result6, tools.SUCCESS_CODE, "日志2验证失败！")
+        print "日志2验证成功！"
 
 
-        # 查看日志
-        if tools.check_logs(self.driver, taskid1, FEEDBACK) > 0:
-            score += 1
-        if tools.check_logs(self.driver, taskid2, FEEDBACK) > 0:
-            score += 1
-
-        # 结果校验
-        if score > 4:
-            print("验证成功！")
-        else:
-            print("验证失败...")
-            print(score)
-
-        pass
+        print(CASE + " 验证成功！")
 
 
 
