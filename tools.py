@@ -56,8 +56,6 @@ def screenshots(driver,casename):
         # mkdir只能在已存在的文件夹里创建子文件夹。如果想实现程序想要的直接创建多级目录的目标，则需要另外一个函数“makedirs”
         os.makedirs("./screenshots/")
 
-    driver.open_notifications()
-    time.sleep(3)
     photo = "./screenshots/" + casename + "_" + time.strftime("%Y%m%d_%H%M%S", time.localtime()) + ".png"
     driver.get_screenshot_as_file(photo)
     # 截图失败，不是同一级目录
@@ -74,11 +72,9 @@ def check_logs(driver,taskid,feedback):
     x = 0
     for i in feedback:
         SUCCESS_LOG = taskid + "|" + str(i)
-        print SUCCESS_LOG
         if SUCCESS_LOG in logs:
             x = x + 1
             continue
-    print len(feedback)
     if x == len(feedback):
         return SUCCESS_CODE
     else:
@@ -92,8 +88,19 @@ def pull_down_nitification(driver,text):
     for t in title:
         if text == t.text:
             t.click()
+            time.sleep(3)
             return SUCCESS_CODE
     return ERROR_CODE
+
+# banner通知，点击通知
+def click_banner_nitification(driver):
+    driver.open_notifications()
+    time.sleep(3)
+    title = driver.find_elements_by_id('com.getui.lbs:id/getui_notification_icon')
+    for t in title:
+        t.click()
+        time.sleep(3)
+    pass
 
 # 查看popup弹框，验证title和按钮文本，并点击
 def popup_nitification(driver,type,text1,text2):
@@ -110,6 +117,7 @@ def popup_nitification(driver,type,text1,text2):
             if text2 == t.text:
                 x += 1
                 t.click()
+                time.sleep(3)
                 break
         if x == 2:
             return SUCCESS_CODE
@@ -121,6 +129,7 @@ def popup_nitification(driver,type,text1,text2):
             if text2 == t.text:
                 y += 1
                 t.click()
+                time.sleep(3)
                 break
         if y == 1:
             return SUCCESS_CODE

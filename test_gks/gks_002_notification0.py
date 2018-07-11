@@ -7,11 +7,11 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-CASE = "test_000_test"
+CASE = "gks_002_notification0"
 TITLE = "测试"
-FEEDBACK = [0,1,100]
+FEEDBACK = [0,1,30001,30011]
 
-class Test:
+class TestNotification0:
     def __init__(self, driver, cid, appid):
         self.driver = driver
         self.cid = cid
@@ -26,7 +26,7 @@ class Test:
         #     e.click()
 
         # 推送动作连
-        taskid = tools.push_notification(self.cid,action_chain.ACTIONCHAIN%(self.appid))
+        taskid = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_NOTIFY0%(self.appid))
         tools.assertNotEqual(self, taskid, tools.NULL, "动作连发送失败！")
         print "动作连发送成功！"
         print taskid

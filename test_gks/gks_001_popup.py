@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import tools, action_chain
+from urllib import quote
 import sys
 
 reload(sys)
@@ -20,13 +21,9 @@ class TestPopup:
         pass
 
     def run(self):
-        self.driver.open_notifications()
-        ele = self.driver.find_elements_by_id("com.android.systemui:id/clear_all_button")
-        for e in ele:
-            e.click()
-
         # 类型4
-        taskid1 = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_POPUP%(self.appid, "4"))
+        actionchain1 = quote(str(action_chain.ACTIONCHAIN_POPUP%(self.appid, "4")))
+        taskid1 = tools.push_notification(self.cid,actionchain1)
         tools.assertNotEqual(self, taskid1, tools.NULL, "动作连1发送失败！")
         print "动作连1发送成功！"
         print taskid1
@@ -40,11 +37,13 @@ class TestPopup:
         print "弹框1验证成功！"
 
         result3 = tools.check_logs(self.driver, taskid1, FEEDBACK)
-        tools.assertEqual(self, result3, tools.SUCCESS_CODE, "日志1验证失败！")
-        print "日志1验证成功！"
+        tools.assertEqual(self, result3, tools.SUCCESS_CODE, "日志1验证失败！\n")
+        print "日志1验证成功！\n"
+
 
         # 类型5
-        taskid2 = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_POPUP(self.appid, "5"))
+        actionchain2 = quote(str(action_chain.ACTIONCHAIN_POPUP % (self.appid, "5")))
+        taskid2 = tools.push_notification(self.cid,actionchain2)
         tools.assertNotEqual(self, taskid2, tools.NULL, "动作连2发送失败！")
         print "动作连2发送成功！"
         print taskid2
@@ -58,8 +57,8 @@ class TestPopup:
         print "弹框1验证成功！"
 
         result6 = tools.check_logs(self.driver, taskid2, FEEDBACK)
-        tools.assertEqual(self, result6, tools.SUCCESS_CODE, "日志2验证失败！")
-        print "日志2验证成功！"
+        tools.assertEqual(self, result6, tools.SUCCESS_CODE, "日志2验证失败！\n")
+        print "日志2验证成功！\n"
 
 
         print(CASE + " 验证成功！")
