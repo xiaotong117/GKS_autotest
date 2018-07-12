@@ -12,6 +12,20 @@ NULL = ""
 ERROR_CODE = 0
 SUCCESS_CODE = 1
 
+# 方法列表：
+# 打印开始日志    log_start(casename)
+# 打印结束日志    log_end()
+# 断言-判断结果   assertResult(self,result,targetvalue = SUCCESS_CODE)
+# 断言-前后相同   assertEqual(self,first, second, msg='')
+# 断言-前后不相同  assertNotEqual(self,first, second, msg='')
+# 推送动作链功能   push_notification(cid,actionchain)
+# 截图功能          screenshots(driver,casename)
+# 查看校验日志        check_logs(driver,taskid,feedback)
+# 下拉查看并点击通知     pull_down_nitification(driver,text)
+# 点击banner通知    click_banner_nitification(driver)
+# 验证popup弹框title和按钮文本，并点击按钮        popup_nitification(driver,type,text1,text2)
+# 通知样式6，双指下拉查看通知    double_pull_nitification(driver,bigstyle)
+
 def log_start(casename):
     print("\n********************************************************************")
     print("************************ " + casename + " ************************\n")
@@ -64,7 +78,7 @@ def screenshots(driver,casename):
     else:
         return ERROR_CODE
 
-# 查看日志
+# 查看校验日志
 def check_logs(driver,taskid,feedback):
     path = "/sdcard/libs/" + configs.PKG_name + "." + time.strftime("%Y-%m-%d", time.localtime()) + ".log" #文件路径/sdcard/libs/com.pp.infonew1.2018-06-21.log
     logsfile = driver.pull_file(path)
@@ -96,7 +110,7 @@ def pull_down_nitification(driver,text):
 def click_banner_nitification(driver):
     driver.open_notifications()
     time.sleep(3)
-    title = driver.find_elements_by_id('com.getui.lbs:id/getui_notification_icon')
+    title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_notification_icon')
     for t in title:
         t.click()
         time.sleep(3)
@@ -134,3 +148,8 @@ def popup_nitification(driver,type,text1,text2):
         if y == 1:
             return SUCCESS_CODE
         else: return ERROR_CODE
+
+# 通知样式6，双指下拉查看通知
+def double_pull_nitification(driver,bigstyle):
+
+    pass

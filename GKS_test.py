@@ -31,7 +31,7 @@ class GKS_Test(unittest.TestCase):
         desired_caps['platformVersion'] = '4.1'  # 安卓版本，这里要根据自己手机进行修改
         desired_caps['deviceName'] = '16a94b82'  # 设备名称，通过adb devices获取
         desired_caps['appPackage'] = configs.PKG_name  # 要打开的app名称
-        desired_caps['appActivity'] = 'com.getui.lbs.GetuiSdkDemoActivity'
+        desired_caps['appActivity'] = configs.PKG_name + '.GetuiSdkDemoActivity'
         self.driver = webdriver.Remote('http://127.0.0.1:4727/wd/hub', desired_caps)
         time.sleep(15)
         # 获取cid和appid

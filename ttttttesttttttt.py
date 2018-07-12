@@ -2,7 +2,9 @@
 # -*- coding: UTF-8 -*-
 
 from appium import webdriver
-import time,base64,requests,configs,action_chain
+from appium.webdriver.common.touch_action import TouchAction
+from appium.webdriver.common.multi_action import MultiAction
+import time,base64,requests,configs,action_chain,tools
 from urllib import quote
 import sys
 
@@ -27,10 +29,43 @@ appid = appidm.split("=")[1].strip()
 print cid
 print appid
 
+taskid = tools.push_notification(cid,action_chain.ACTIONCHAIN_NOTIFY6_1%(appid))
+print taskid
+
 driver.open_notifications()
 time.sleep(3)
-title = driver.find_elements_by_id('com.getui.lbs:id/getui_notification_icon')
-for t in title:
-    t.click()
-pass
+title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notification_icon')[0].location
+# for t in title:
+#     print t.location
+x = title["x"]
+y = title["x"]
+print type(x)
+x1 = x + 100
+x2 = x + 200
+y1 = y + 30
+y2 = y - 30
 
+action1 = TouchAction(driver)
+action2 = TouchAction(driver)
+zoom_action = MultiAction(driver)
+
+action1.press(x=x1,y=y1).move_to(x=x1,y=y2).wait(500).release()
+action2.press(x=x2,y=y1).move_to(x=x2,y=y2).wait(500).release()
+
+zoom_action.add(action1, action2)
+zoom_action.perform()
+# 获取当前手机屏幕大小X,Y
+# x = driver.get_window_size()['width']
+# y = driver.get_window_size()['height']
+# print x,y
+# def zoom():
+#     action1 = TouchAction()
+#     action2 = TouchAction()
+#     zoom_action = MultiAction()
+#
+#     action1.press(x=x*0.4, y=y*0.4).move_to(x=x*0.1, y=y*0.1).wait(500).release()
+#     action2.press(x=x*0.6, y=y*0.6).move_to(x=x*0.8, y=y*0.8).wait(500).release()
+#
+#     print('start zoom...')
+#     zoom_action.add(action1, action2)
+#     zoom_action.perform()
