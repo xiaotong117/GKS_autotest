@@ -26,7 +26,7 @@ class TestNotification0:
 
         # 推送动作连
         taskid = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_NOTIFY4%(self.appid))
-        tools.assertNotEqual(self, taskid, tools.NULL, "动作连发送失败！")
+        tools.assertNotEqual(taskid, tools.NULL, "动作连发送失败！")
         print "动作连发送成功！"
         print taskid
 
@@ -36,7 +36,7 @@ class TestNotification0:
         result1 = tools.screenshots(self.driver,CASE)
         self.driver.open_notifications()
         time.sleep(2)
-        tools.assertEqual(self, result1, tools.SUCCESS_CODE, "截图失败！")
+        tools.assertEqual(result1, tools.SUCCESS_CODE, "截图失败！")
         print "截图成功！"
 
         # 2.点击通知
@@ -44,7 +44,7 @@ class TestNotification0:
 
         # 3.查看日志
         result2 = tools.check_logs(self.driver,taskid,FEEDBACK)
-        tools.assertEqual(self, result2, tools.SUCCESS_CODE, "日志验证失败！\n")
+        tools.assertEqual(result2, tools.SUCCESS_CODE, "日志验证失败！\n")
         print "日志验证成功！\n"
 
         print(CASE + " 验证成功！")

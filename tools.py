@@ -34,17 +34,17 @@ def log_end():
     print("\n************************ end ************************")
     print("**********************************************************************\n")
 
-def assertResult(self,result,targetvalue = SUCCESS_CODE):
+def assertResult(result,targetvalue = SUCCESS_CODE):
     if result != targetvalue:
         raise AssertionError('result:' + str(result))
     pass
 
-def assertEqual(self,first, second, msg=''):
+def assertEqual(first, second, msg=''):
     if first != second:
         raise AssertionError(msg)
     pass
 
-def assertNotEqual(self,first, second, msg=''):
+def assertNotEqual(first, second, msg=''):
     if first == second:
         raise AssertionError(msg)
     pass

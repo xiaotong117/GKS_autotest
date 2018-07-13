@@ -38,22 +38,21 @@ title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notificatio
 # for t in title:
 #     print t.location
 x = title["x"]
-y = title["x"]
+y = title["y"]
 print type(x)
 x1 = x + 100
 x2 = x + 200
 y1 = y + 30
-y2 = y - 30
+y2 = y - 100
 
 action1 = TouchAction(driver)
 action2 = TouchAction(driver)
-zoom_action = MultiAction(driver)
+action1.press(x=x1,y=y1).wait(500).move_to(x=x1,y=y2).wait(500).release()
+action2.press(x=x2,y=y1).wait(500).move_to(x=x2,y=y2).wait(500).release()
 
-action1.press(x=x1,y=y1).move_to(x=x1,y=y2).wait(500).release()
-action2.press(x=x2,y=y1).move_to(x=x2,y=y2).wait(500).release()
+MultiAction(driver).add(action1, action2).perform()
 
-zoom_action.add(action1, action2)
-zoom_action.perform()
+
 # 获取当前手机屏幕大小X,Y
 # x = driver.get_window_size()['width']
 # y = driver.get_window_size()['height']
