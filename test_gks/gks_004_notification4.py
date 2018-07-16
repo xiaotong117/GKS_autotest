@@ -25,7 +25,7 @@ class TestNotification4:
         #     e.click()
 
         # 推送动作连
-        taskid = tools.push_notification(self.cid,action_chain.ACTIONCHAIN_NOTIFY4%(self.appid))
+        taskid = tools.push_actionchain(self.cid,action_chain.ACTIONCHAIN_NOTIFY4%(self.appid))
         tools.assertNotEqual(taskid, tools.NULL, "动作连发送失败！")
         print "动作连发送成功！"
         print taskid

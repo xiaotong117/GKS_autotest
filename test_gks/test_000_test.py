@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import tools,time,action_chain
+import notification_tools,tools,time,action_chain
 import sys
 
 reload(sys)
@@ -26,7 +26,7 @@ class Test:
         #     e.click()
 
         # 推送动作连
-        taskid = tools.push_notification(self.cid,action_chain.ACTIONCHAIN%(self.appid))
+        taskid = tools.push_actionchain(self.cid,action_chain.ACTIONCHAIN%(self.appid))
         tools.assertNotEqual(self, taskid, tools.NULL, "动作连发送失败！")
         print "动作连发送成功！"
         print taskid
@@ -41,7 +41,7 @@ class Test:
         print "截图成功！"
 
         # 2.下拉查看通知并点击
-        result2 = tools.pull_down_nitification(self.driver, TITLE)
+        result2 = notification_tools.pull_down_nitification(self.driver, TITLE)
         tools.assertEqual(self, result2, tools.SUCCESS_CODE, "通知验证失败！")
         print "通知验证成功！"
 

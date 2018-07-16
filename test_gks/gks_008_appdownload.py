@@ -35,12 +35,7 @@ class TestAppdownload:
 
         # 3.验证下载文件
         time.sleep(30)
-        read = os.popen('adb shell ls /sdcard/libs/tmp').readlines()
-        result1 = 0
-        for i in range(0, len(read)):
-            # print read[i]
-            if read[i].strip() == NAME + '.apk':
-                result1 = 1
+        result1 = tools.verify_file("adb shell ls /sdcard/libs/tmp", NAME + ".pkg")
         tools.assertEqual(result1, tools.SUCCESS_CODE, "下载文件验证失败！")
         print "下载文件验证成功！"
 

@@ -23,11 +23,7 @@ SUCCESS_CODE = 1
 # 推送动作链功能   push_notification(cid,actionchain)
 # 截图功能          screenshots(driver,casename)
 # 查看校验日志        check_logs(driver,taskid,feedback)
-# 下拉查看并点击通知     pull_down_nitification(driver,text)
-# 点击banner通知    click_banner_nitification(driver)
-# banner+大图通知，点击通知
-# 验证popup弹框title和按钮文本，并点击按钮        popup_nitification(driver,type,text1,text2)
-# 通知样式6，双指下拉查看通知    double_pull_nitification(driver,bigstyle)
+# 验证文件是否存在  def verify_file(path,filsname):
 
 def log_start(casename):
     print("\n********************************************************************")
@@ -53,7 +49,7 @@ def assertNotEqual(first, second, msg=''):
     pass
 
 # 推送动作链功能
-def push_notification(cid,actionchain):
+def push_actionchain(cid,actionchain):
     s = requests.session()
     s.post(configs.URL1, data=configs.MYCOOKIE)
     r = s.post(configs.URL2%(cid,actionchain))
@@ -97,87 +93,11 @@ def check_logs(driver,taskid,feedback):
     else:
         return ERROR_CODE
 
-# 下拉查看通知，查看到了之后点击通知
-def pull_down_nitification(driver,text):
-    driver.open_notifications()
-    time.sleep(3)
-    title = driver.find_elements_by_class_name('android.widget.TextView')
-    for t in title:
-        if text == t.text:
-            t.click()
-            time.sleep(3)
+# 验证文件是否存在(路径，文件名)
+def verify_file(path,filsname):
+    read = os.popen(path).readlines()
+    for i in range(0, len(read)):
+        # print read[i]
+        if read[i].strip() == filsname:
             return SUCCESS_CODE
-    return ERROR_CODE
-
-# banner通知，点击通知
-def click_banner_nitification(driver):
-    driver.open_notifications()
-    time.sleep(3)
-    title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_notification_icon')
-    for t in title:
-        t.click()
-        time.sleep(3)
-    pass
-
-# banner+大图通知，点击通知
-def click_bigtype3_nitification(driver):
-    driver.open_notifications()
-    time.sleep(3)
-    title = driver.find_elements_by_id('com.android.systemui:id/backgroundNormal')
-    le = len(title)-1
-    title[le].click()
-    time.sleep(3)
-    pass
-
-# 查看popup弹框，验证title和按钮文本，并点击
-def popup_nitification(driver,type,text1,text2):
-    x = 0
-    y = 0
-    if type == 4:
-        title1 = driver.find_elements_by_class_name('android.widget.TextView')
-        for t in title1:
-            if text1 == t.text:
-                x += 1
-                break
-        title2 = driver.find_elements_by_class_name('android.widget.Button')
-        for t in title2:
-            if text2 == t.text:
-                x += 1
-                t.click()
-                time.sleep(3)
-                break
-        if x == 2:
-            return SUCCESS_CODE
-        else: return ERROR_CODE
-
-    if type == 5:
-        title3 = driver.find_elements_by_class_name('android.widget.Button')
-        for t in title3:
-            if text2 == t.text:
-                y += 1
-                t.click()
-                time.sleep(3)
-                break
-        if y == 1:
-            return SUCCESS_CODE
-        else: return ERROR_CODE
-
-# 通知样式6，双指下拉查看通知
-def double_pull_nitification(driver,bigstyle):
-    driver.open_notifications()
-    time.sleep(3)
-
-    if  not len(driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_bigview_defaultView')):
-        title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notification_icon')[0].location
-        x = title["x"]
-        y = title["y"]
-        x1 = x + 100
-        x2 = x + 200
-        y1 = y + 30
-        y2 = y + 100
-
-        action1 = TouchAction(driver)
-        action2 = TouchAction(driver)
-        action1.press(x=x1, y=y1).wait(500).move_to(x=x1, y=y2).wait(500).release()
-        action2.press(x=x2, y=y1).wait(500).move_to(x=x2, y=y2).wait(500).release()
-        MultiAction(driver).add(action1, action2).perform()
+        return ERROR_CODE

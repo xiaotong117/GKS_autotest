@@ -23,7 +23,7 @@ class TestPopup:
     def run(self):
         # 类型4
         actionchain1 = quote(str(action_chain.ACTIONCHAIN_POPUP%(self.appid, "4")))
-        taskid1 = tools.push_notification(self.cid,actionchain1)
+        taskid1 = tools.push_actionchain(self.cid,actionchain1)
         tools.assertNotEqual(taskid1, tools.NULL, "动作连1发送失败！")
         print "动作连1发送成功！"
         print taskid1
@@ -43,7 +43,7 @@ class TestPopup:
 
         # 类型5
         actionchain2 = quote(str(action_chain.ACTIONCHAIN_POPUP % (self.appid, "5")))
-        taskid2 = tools.push_notification(self.cid,actionchain2)
+        taskid2 = tools.push_actionchain(self.cid,actionchain2)
         tools.assertNotEqual(taskid2, tools.NULL, "动作连2发送失败！")
         print "动作连2发送成功！"
         print taskid2
