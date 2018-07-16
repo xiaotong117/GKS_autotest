@@ -10,7 +10,7 @@ sys.setdefaultencoding('utf8')
 CASE = "gks_004_notification4"
 FEEDBACK = [0,1,30001,30011]
 
-class TestNotification0:
+class TestNotification4:
     def __init__(self, driver, cid, appid):
         self.driver = driver
         self.cid = cid

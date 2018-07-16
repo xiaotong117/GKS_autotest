@@ -39,11 +39,12 @@ title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notificatio
 #     print t.location
 x = title["x"]
 y = title["y"]
-print type(x)
+
 x1 = x + 100
 x2 = x + 200
 y1 = y + 30
 y2 = y - 100
+
 
 action1 = TouchAction(driver)
 action2 = TouchAction(driver)

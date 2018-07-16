@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import requests,time,os,base64
+from appium.webdriver.common.touch_action import TouchAction
+from appium.webdriver.common.multi_action import MultiAction
 import configs
 import sys,os
 
@@ -23,6 +25,7 @@ SUCCESS_CODE = 1
 # 查看校验日志        check_logs(driver,taskid,feedback)
 # 下拉查看并点击通知     pull_down_nitification(driver,text)
 # 点击banner通知    click_banner_nitification(driver)
+# banner+大图通知，点击通知
 # 验证popup弹框title和按钮文本，并点击按钮        popup_nitification(driver,type,text1,text2)
 # 通知样式6，双指下拉查看通知    double_pull_nitification(driver,bigstyle)
 
@@ -58,7 +61,7 @@ def push_notification(cid,actionchain):
     # print actionchain
     # print (r)
     list = r.text.split(':')
-    # print (list[0])
+    # print list
     messageID = list[1].strip()
     taskID = messageID.split('-')[2]
     return taskID
@@ -116,6 +119,16 @@ def click_banner_nitification(driver):
         time.sleep(3)
     pass
 
+# banner+大图通知，点击通知
+def click_bigtype3_nitification(driver):
+    driver.open_notifications()
+    time.sleep(3)
+    title = driver.find_elements_by_id('com.android.systemui:id/backgroundNormal')
+    le = len(title)-1
+    title[le].click()
+    time.sleep(3)
+    pass
+
 # 查看popup弹框，验证title和按钮文本，并点击
 def popup_nitification(driver,type,text1,text2):
     x = 0
@@ -151,5 +164,20 @@ def popup_nitification(driver,type,text1,text2):
 
 # 通知样式6，双指下拉查看通知
 def double_pull_nitification(driver,bigstyle):
+    driver.open_notifications()
+    time.sleep(3)
 
-    pass
+    if  not len(driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_bigview_defaultView')):
+        title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notification_icon')[0].location
+        x = title["x"]
+        y = title["y"]
+        x1 = x + 100
+        x2 = x + 200
+        y1 = y + 30
+        y2 = y + 100
+
+        action1 = TouchAction(driver)
+        action2 = TouchAction(driver)
+        action1.press(x=x1, y=y1).wait(500).move_to(x=x1, y=y2).wait(500).release()
+        action2.press(x=x2, y=y1).wait(500).move_to(x=x2, y=y2).wait(500).release()
+        MultiAction(driver).add(action1, action2).perform()

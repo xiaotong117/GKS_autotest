@@ -11,7 +11,7 @@ CASE = "gks_003_notification1"
 TITLE = "测试"
 FEEDBACK = [0,1,30001,30011]
 
-class TestNotification0:
+class TestNotification1:
     def __init__(self, driver, cid, appid):
         self.driver = driver
         self.cid = cid
