@@ -74,8 +74,8 @@ def popup_notification(driver,type,text1,text2):
         else: return ERROR_CODE
 
     if type == 5:
-        title3 = driver.find_elements_by_class_name('android.widget.Button')
-        for t in title3:
+        title2 = driver.find_elements_by_class_name('android.widget.Button')
+        for t in title2:
             if text2 == t.text:
                 y += 1
                 t.click()

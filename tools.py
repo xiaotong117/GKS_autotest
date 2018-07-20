@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import requests,time,os,base64
-from appium.webdriver.common.touch_action import TouchAction
-from appium.webdriver.common.multi_action import MultiAction
 import configs
 import sys,os
 
@@ -77,18 +75,18 @@ def screenshots(driver,casename):
     else:
         return ERROR_CODE
 
-# 查看校验日志
+# 查看校验日志（可以验证多个回执）
 def check_logs(driver,taskid,feedback):
     path = "/sdcard/libs/" + configs.PKG_name + "." + time.strftime("%Y-%m-%d", time.localtime()) + ".log" #文件路径/sdcard/libs/com.pp.infonew1.2018-06-21.log
     logsfile = driver.pull_file(path)
     logs = base64.b64decode(logsfile).decode('utf-8')#先解码byte转字符串，再用utf-8编码
-    x = 0
+    verify_pass = 0
     for i in feedback:
         SUCCESS_LOG = taskid + "|" + str(i)
         if SUCCESS_LOG in logs:
-            x = x + 1
+            verify_pass = verify_pass + 1
             continue
-    if x == len(feedback):
+    if verify_pass == len(feedback):
         return SUCCESS_CODE
     else:
         return ERROR_CODE

@@ -18,7 +18,7 @@ class TestAppdownload:
         self.appid = appid
         pass
 
-    def run(self):
+    def appdownload(self):
         # 1.删除文件夹中的文件，删除要安装的APP
         os.system("adb shell rm -r /sdcard/libs/tmp")
         time.sleep(5)
@@ -57,4 +57,12 @@ class TestAppdownload:
 
         # 7.检查APP安装完成后是否自动打开
         # 8.验证回执
+        pass
+    def silentdownload(self):
+        # 1.删除文件夹中的文件，删除要安装的APP
+        # 2.下发动作连
+        # 3.验证下载文件
+        # 4.点击安装
+        # 5.检查APP安装完成后是否自动打开
+        # 6.验证回执
         pass

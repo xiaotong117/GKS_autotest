@@ -10,8 +10,8 @@ import time,unittest
 import tools
 import configs
 from test_gks.test_000_test import Test
-from test_gks.gks_001_popup import TestPopup
-from test_gks.gks_002_notification0 import TestNotification0
+from test_gks.gks_popup import TestPopup
+from test_gks.gks_notification import TestNotification0
 from test_gks.gks_003_notification1 import TestNotification1
 from test_gks.gks_004_notification4 import TestNotification4
 from test_gks.gks_005_notification6_1 import TestNotification6_1
