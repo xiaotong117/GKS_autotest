@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import requests,time,os,base64,tools,action_chain
+import unittest,time,os,base64,tools,action_chain
 from appium.webdriver.common.touch_action import TouchAction
 from appium.webdriver.common.multi_action import MultiAction
 import configs
@@ -14,7 +14,7 @@ NULL = ""
 ERROR_CODE = 0
 SUCCESS_CODE = 1
 
-class testbase:
+class testbase(unittest.TestCase):
     def __init__(self, driver):
         self.driver = driver
 
@@ -38,9 +38,29 @@ class testbase:
 
     def verify_actionchain(self,cid,actionchain):
         taskid = tools.push_actionchain(cid,actionchain)
-        tools.assertNotEqual(self, taskid, tools.NULL, "动作连发送失败！")
+        tools.assertNotEqual(taskid, tools.NULL, "动作连发送失败！")
         print "动作连发送成功！"
-        print taskid
+        return taskid
+
+    def verify_screenshots(self,filename):
+        result = tools.screenshots(self.driver,filename)
+        tools.assertEqual(result, tools.SUCCESS_CODE, "截图失败！")
+        print "截图成功！"
+
+    def verify_nitification(self,text):
+        result = self.pull_down_notification(self.driver, text)
+        tools.assertEqual(result, tools.SUCCESS_CODE, "通知验证失败！")
+        print "通知验证成功！"
+
+    def verify_logs(self, taskid, FEEDBACK):
+        result = tools.check_logs(self.driver, taskid, FEEDBACK)
+        tools.assertEqual(result, tools.SUCCESS_CODE, "日志验证失败！\n")
+        print "日志验证成功！\n"
+
+    def verify_popup(self,driver, type, title, btn_title):
+        result = self.popup_notification(driver, type, title, btn_title)
+        tools.assertEqual(result, tools.SUCCESS_CODE, "弹框验证失败！")
+        print "弹框验证成功！"
 
     # 下拉查看通知，查看到了之后点击通知
     def pull_down_notification(self, driver, text):
@@ -84,8 +104,8 @@ class testbase:
         driver.open_notifications()
         time.sleep(3)
 
-        if not len(driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_bigview_defaultView')):
-            title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notification_icon')[0].location
+        if not len(driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notification_icon')):
+            title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_notification_icon')[0].location
             x = title["x"]
             y = title["y"]
             x1 = x + 100

@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import os,tools,time,action_chain,testbase
+import os,tools,time,action_chain
+from testbase import testbase
 import sys
 
 reload(sys)

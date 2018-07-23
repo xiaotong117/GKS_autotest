@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import tools,time,action_chain,testbase
+import tools,time,action_chain
+from testbase import testbase
 import sys
 
 reload(sys)
@@ -26,26 +27,18 @@ class Test(testbase):
         #     e.click()
 
         # 推送动作连
-        self.verify_actionchain(self, self.cid, action_chain.ACTIONCHAIN%(self.appid))
+        taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN%(self.appid))
 
 
         # 1.截图过程
         self.driver.open_notifications()
         time.sleep(2)
-        result1 = tools.screenshots(self.driver,CASE)
-        self.driver.open_notifications()
-        time.sleep(2)
-        tools.assertEqual(self, result1, tools.SUCCESS_CODE, "截图失败！")
-        print "截图成功！"
+        self.verify_screenshots(CASE)
 
         # 2.下拉查看通知并点击
-        result2 = self.pull_down_nitification(self.driver, TITLE)
-        tools.assertEqual(self, result2, tools.SUCCESS_CODE, "通知验证失败！")
-        print "通知验证成功！"
+        self.verify_nitification(TITLE)
 
         # 3.查看日志
-        result3 = tools.check_logs(self.driver,taskid,FEEDBACK)
-        tools.assertEqual(self, result3, tools.SUCCESS_CODE, "日志验证失败！\n")
-        print "日志验证成功！\n"
+        self.verify_logs(taskid, FEEDBACK)
 
         print(CASE + " 验证成功！")
