@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import os,tools,time,action_chain
+import os,tools,time,action_chain,testbase
 import sys
 
 reload(sys)
@@ -11,7 +11,7 @@ CASE = "gks_008_appdownload"
 NAME = "直接下载"
 FEEDBACK = [0,1,10050,10060,10070,10080,10090]
 
-class TestAppdownload:
+class TestAppdownload(testbase):
     def __init__(self, driver, cid, appid):
         self.driver = driver
         self.cid = cid
@@ -28,7 +28,7 @@ class TestAppdownload:
         print "删除要安装的APP"
 
         # 2.下发动作链
-        taskid = tools.push_notification(self.cid, action_chain.ACTIONCHAIN_APPDOWNLOAD % (self.appid))
+        taskid = tools.push_actionchain(self.cid, action_chain.ACTIONCHAIN_APPDOWNLOAD % (self.appid))
         tools.assertNotEqual(taskid, tools.NULL, "动作连发送失败！")
         print "动作连发送成功！"
         print taskid
@@ -49,7 +49,7 @@ class TestAppdownload:
         print "截图成功！"
 
         # 5.下拉通知栏验证通知并点击通知
-        result3 = tools.pull_down_nitification(self.driver, NAME)
+        result3 = self.pull_down_nitification(self.driver, NAME)
         tools.assertEqual(result3, tools.SUCCESS_CODE, "通知验证失败！")
         print "通知验证成功！"
 

@@ -62,8 +62,6 @@ class TestNotification(testbase):
         self.driver.open_notifications()
         time.sleep(2)
         result1 = tools.screenshots(self.driver,"notification1")
-        self.driver.open_notifications()
-        time.sleep(2)
         tools.assertEqual(result1, tools.SUCCESS_CODE, "截图失败！")
         print "截图成功！"
 

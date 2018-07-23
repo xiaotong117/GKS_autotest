@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import notification_tools,tools,time,action_chain
+import tools,time,action_chain,testbase
 import sys
 
 reload(sys)
@@ -11,7 +11,7 @@ CASE = "test_000_test"
 TITLE = "测试"
 FEEDBACK = [0,1,100]
 
-class Test:
+class Test(testbase):
     def __init__(self, driver, cid, appid):
         self.driver = driver
         self.cid = cid
@@ -26,10 +26,8 @@ class Test:
         #     e.click()
 
         # 推送动作连
-        taskid = tools.push_actionchain(self.cid,action_chain.ACTIONCHAIN%(self.appid))
-        tools.assertNotEqual(self, taskid, tools.NULL, "动作连发送失败！")
-        print "动作连发送成功！"
-        print taskid
+        self.verify_actionchain(self, self.cid, action_chain.ACTIONCHAIN%(self.appid))
+
 
         # 1.截图过程
         self.driver.open_notifications()
@@ -41,7 +39,7 @@ class Test:
         print "截图成功！"
 
         # 2.下拉查看通知并点击
-        result2 = notification_tools.pull_down_nitification(self.driver, TITLE)
+        result2 = self.pull_down_nitification(self.driver, TITLE)
         tools.assertEqual(self, result2, tools.SUCCESS_CODE, "通知验证失败！")
         print "通知验证成功！"
 

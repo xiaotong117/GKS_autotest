@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import tools, action_chain
+import testbase, tools, action_chain
 from urllib import quote
 import sys
 
@@ -13,7 +13,7 @@ TITLE = "测试"
 BTN_TEXT = "安装"
 FEEDBACK = [0,1,40001]
 
-class TestPopup:
+class TestPopup(testbase):
     def __init__(self,driver,cid,appid):
         self.driver = driver
         self.cid = cid
@@ -32,7 +32,7 @@ class TestPopup:
         tools.assertEqual(result1, tools.SUCCESS_CODE, "截图1失败！")
         print "截图1成功！"
 
-        result2 = tools.popup_nitification(self.driver, 4, TITLE, BTN_TEXT)
+        result2 = self.popup_notification(self.driver, 4, TITLE, BTN_TEXT)
         tools.assertEqual(result2, tools.SUCCESS_CODE, "弹框1验证失败！")
         print "弹框1验证成功！"
 
@@ -52,7 +52,7 @@ class TestPopup:
         tools.assertEqual(result4, tools.SUCCESS_CODE, "截图2失败！")
         print "截图2成功！"
 
-        result5 = tools.popup_nitification(self.driver, 5, TITLE, BTN_TEXT)
+        result5 = self.popup_notification(self.driver, 5, TITLE, BTN_TEXT)
         tools.assertEqual(result5, tools.SUCCESS_CODE, "弹框2验证失败！")
         print "弹框1验证成功！"
 
