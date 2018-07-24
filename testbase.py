@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import unittest,time,os,base64,tools,action_chain
-from appium.webdriver.common.touch_action import TouchAction
-from appium.webdriver.common.multi_action import MultiAction
 import configs
 import sys,os
 
@@ -81,16 +79,6 @@ class testbase(unittest.TestCase):
             time.sleep(3)
         pass
 
-    # banner+大图通知，点击通知
-    def click_bigtype3_notification(self, driver):
-        driver.open_notifications()
-        time.sleep(3)
-        title = driver.find_elements_by_id('com.android.systemui:id/backgroundNormal')
-        le = len(title) - 1
-        title[le].click()
-        time.sleep(3)
-        pass
-
     # 查看popup弹框，验证title和按钮文本，并点击
     def popup_notification(self, driver, type, title_text, btn_text):
         result_btn = self.find_class_name(driver, 'android.widget.Button', btn_text)
@@ -100,21 +88,25 @@ class testbase(unittest.TestCase):
         return result_btn
 
     # 通知样式6，双指下拉查看通知
-    def double_pull_notification(self, driver, bigstyle):
+    def double_pull_notification(self, driver, bigstyle, text):
         driver.open_notifications()
         time.sleep(3)
 
-        if not len(driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notification_icon')):
-            title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_notification_icon')[0].location
-            x = title["x"]
-            y = title["y"]
-            x1 = x + 100
-            x2 = x + 200
-            y1 = y + 30
-            y2 = y + 100
+        if bigstyle ==61 | bigstyle ==62:
+            if not len(driver.find_elements_by_id(configs.PKG_name + ':id/getui_big_notification_icon')):
+                tools.double_slide(driver,configs.PKG_name + ':id/getui_notification_icon',100,200,30,100)
+                time.sleep(3)
+            result = self.find_class_name(driver, 'android.widget.TextView', text)
+            tools.assertEqual(result, tools.SUCCESS_CODE, "通知验证失败！")
+            print "通知验证成功！"
 
-            action1 = TouchAction(driver)
-            action2 = TouchAction(driver)
-            action1.press(x=x1, y=y1).wait(500).move_to(x=x1, y=y2).wait(500).release()
-            action2.press(x=x2, y=y1).wait(500).move_to(x=x2, y=y2).wait(500).release()
-            MultiAction(driver).add(action1, action2).perform()
+        if bigstyle ==63:
+            if not len(driver.find_elements_by_id(configs.PKG_name + ':id/getui_bigview_expanded')):
+                tools.double_slide(driver,configs.PKG_name + ':id/getui_bigview_banner',200,400,50,150)
+                time.sleep(3)
+            bigimage = driver.find_elements_by_id(configs.PKG_name + ':id/getui_bigview_expanded')
+            for b in bigimage:
+                b.click()
+                time.sleep(3)
+
+

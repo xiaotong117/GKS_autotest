@@ -39,8 +39,9 @@ class TestNotification(testbase):
             self.verify_nitification(TITLE)
         if type == 4:
             self.click_banner_notification(self.driver)
-        if type == 61|62:
-            self.double_pull_notification(self.driver, type)
+        if type == 61|62|63:
+            self.double_pull_notification(self.driver, type, TITLE)
+            self.verify_screenshots("notification" + type)
             self.verify_nitification(TITLE)
 
         # 3.查看日志

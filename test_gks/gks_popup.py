@@ -9,7 +9,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-CASE = "gks_001_popup"
+CASE = "gks_popup"
 TITLE = "测试"
 BTN_TEXT = "安装"
 FEEDBACK = [0,1,40001]
@@ -25,22 +25,15 @@ class TestPopup(testbase):
         # 类型4
         actionchain1 = quote(str(action_chain.ACTIONCHAIN_POPUP%(self.appid, "4")))
         taskid1 = self.verify_actionchain(self.cid, actionchain1)
-
         self.verify_screenshots(CASE)
-
         self.verify_popup(self.driver, 4, TITLE, BTN_TEXT)
-
         self.verify_logs(taskid1, FEEDBACK)
-
 
         # 类型5
         actionchain2 = quote(str(action_chain.ACTIONCHAIN_POPUP % (self.appid, "5")))
         taskid2 = self.verify_actionchain(self.cid, actionchain2)
-
         self.verify_screenshots(CASE)
-
         self.verify_popup(self.driver, 5, TITLE, BTN_TEXT)
-
         self.verify_logs(taskid2, FEEDBACK)
 
 

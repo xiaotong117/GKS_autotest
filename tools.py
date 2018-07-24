@@ -3,6 +3,9 @@
 
 import requests,time,os,base64
 import configs
+from urllib import quote
+from appium.webdriver.common.touch_action import TouchAction
+from appium.webdriver.common.multi_action import MultiAction
 import sys,os
 
 reload(sys)
@@ -21,7 +24,9 @@ SUCCESS_CODE = 1
 # 推送动作链功能   push_notification(cid,actionchain)
 # 截图功能          screenshots(driver,casename)
 # 查看校验日志        check_logs(driver,taskid,feedback)
-# 验证文件是否存在  def verify_file(path,filsname):
+# 验证文件是否存在  def verify_file(path,filsname)
+# 双指滑动操作(找到元素左上角的坐标(x,y)，将(x+a,y+c)(x+b,y+c)两个点分别移动到(x+a,y+d)(x+b,y+d)      def double_slide(driver,elements,a,b,c,d)
+
 
 def log_start(casename):
     print("\n********************************************************************")
@@ -50,7 +55,7 @@ def assertNotEqual(first, second, msg=''):
 def push_actionchain(cid,actionchain):
     s = requests.session()
     s.post(configs.URL1, data=configs.MYCOOKIE)
-    r = s.post(configs.URL2%(cid,actionchain))
+    r = s.post(configs.URL2%(cid,quote(str(actionchain))))
     time.sleep(5)
     # print actionchain
     # print (r)
@@ -99,3 +104,22 @@ def verify_file(path,filsname):
         if read[i].strip() == filsname:
             return SUCCESS_CODE
         return ERROR_CODE
+
+# 双指滑动操作(找到元素左上角的坐标(x,y)，将(x+a,y+c)(x+b,y+c)两个点分别移动到(x+a,y+d)(x+b,y+d)
+def double_slide(driver,elements,a,b,c,d):
+    title = driver.find_elements_by_id(elements)[0].location
+    x = title["x"]
+    y = title["y"]
+    x1 = x + a
+    x2 = x + b
+    y1 = y + c
+    y2 = y + d
+
+    action1 = TouchAction(driver)
+    action2 = TouchAction(driver)
+    action3 = MultiAction(driver)
+    action1.press(x=x1, y=y1).wait(500).move_to(x=x1, y=y2).wait(500).release()
+    action2.press(x=x2, y=y1).wait(500).move_to(x=x2, y=y2).wait(500).release()
+    action3.add(action1, action2)
+    action3.perform()
+    time.sleep(3)

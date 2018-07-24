@@ -24,8 +24,8 @@ class GKS_Test(unittest.TestCase):
     def setUp(self):
         desired_caps = {}
         desired_caps['platformName'] = 'Android'  # 手机平台
-        desired_caps['platformVersion'] = '6.0'  # 安卓版本，这里要根据自己手机进行修改
-        desired_caps['deviceName'] = 'Y9K0215505009215'  # 设备名称，通过adb devices获取
+        desired_caps['platformVersion'] = '5.1'  # 安卓版本，这里要根据自己手机进行修改
+        desired_caps['deviceName'] = '16a94b82'  # 设备名称，通过adb devices获取
         desired_caps['appPackage'] = configs.PKG_name  # 要打开的app名称
         desired_caps['appActivity'] = configs.PKG_name + '.GetuiSdkDemoActivity'
         self.driver = webdriver.Remote('http://127.0.0.1:4727/wd/hub', desired_caps)
@@ -117,6 +117,24 @@ class GKS_Test(unittest.TestCase):
         tools.log_start("test_007_notification6_3")
         # 运行测例
         TestNotification(self.driver,self.cid,self.appid).notification(63, action_chain.ACTIONCHAIN_NOTIFY6_3 % (self.appid))
+        # 打印结束日志
+        tools.log_end()
+
+    # 测例8：普通下载
+    def test_008_appdownload(self):
+        # 打印开头日志
+        tools.log_start("test_008_appdownload")
+        # 运行测例
+        TestAppdownload(self.driver,self.cid,self.appid).appdownload()
+        # 打印结束日志
+        tools.log_end()
+
+    # 测例9：静默下载
+    def test_009_silentdownload(self):
+        # 打印开头日志
+        tools.log_start("test_009_silentdownload")
+        # 运行测例
+        TestAppdownload(self.driver,self.cid,self.appid).silentdownload()
         # 打印结束日志
         tools.log_end()
 
