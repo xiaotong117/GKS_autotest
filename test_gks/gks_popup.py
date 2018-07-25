@@ -23,15 +23,13 @@ class TestPopup(testbase):
 
     def run(self):
         # 类型4
-        actionchain1 = quote(str(action_chain.ACTIONCHAIN_POPUP%(self.appid, "4")))
-        taskid1 = self.verify_actionchain(self.cid, actionchain1)
+        taskid1 = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_POPUP%(self.appid, "4"))
         self.verify_screenshots(CASE)
         self.verify_popup(self.driver, 4, TITLE, BTN_TEXT)
         self.verify_logs(taskid1, FEEDBACK)
 
         # 类型5
-        actionchain2 = quote(str(action_chain.ACTIONCHAIN_POPUP % (self.appid, "5")))
-        taskid2 = self.verify_actionchain(self.cid, actionchain2)
+        taskid2 = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_POPUP % (self.appid, "5"))
         self.verify_screenshots(CASE)
         self.verify_popup(self.driver, 5, TITLE, BTN_TEXT)
         self.verify_logs(taskid2, FEEDBACK)

@@ -20,31 +20,25 @@ class TestNotification(testbase):
 
     def notification(self, type, action_chain):
         # 下拉通知栏，清空所有通知
-        # self.driver.open_notifications()
-        # ele = self.driver.find_elements_by_id("com.android.systemui:id/clear_all_button")
-        # ele = self.driver.find_elements_by_id("com.android.systemui:id/clear_notification")
-        # for e in ele:
-        #     e.click()
+        tools.clear_motification(self.driver)
 
         # 推送动作连
-        taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_NOTIFY0 % (self.appid))
+        taskid = self.verify_actionchain(self.cid, action_chain)
 
         # 1.截图过程
         self.driver.open_notifications()
         time.sleep(2)
-        self.verify_screenshots("notification" + type)
+        self.verify_screenshots("notification" + str(type))
 
         # 2.下拉查看通知并点击
-        if type == 0|1:
+        if type == 0 or type == 1:
             self.verify_nitification(TITLE)
-        if type == 4:
+        elif type == 4:
             self.click_banner_notification(self.driver)
-        if type == 61|62|63:
+        elif type == 61 or type == 62 or type == 63:
             self.double_pull_notification(self.driver, type, TITLE)
-            self.verify_screenshots("notification" + type)
-            self.verify_nitification(TITLE)
 
         # 3.查看日志
         self.verify_logs(taskid, FEEDBACK)
 
-        print("notification" + type + "验证成功！")
+        print("notification" + str(type) + "验证成功！")

@@ -37,4 +37,6 @@ ACTIONCHAIN_SILENTDOWNLOAD = '{"action":"pushmessage","appkey":"110000","appid":
 # 普通下载   %s为appid
 ACTIONCHAIN_APPDOWNLOAD = '{"action":"pushmessage","appkey":"110000","appid":"%s","id":"cmdid","messageid":"11111","taskid":"TASK_ID","push_info":{"action_key":"确定","badge":"1","sound":"cow.caf","message":"message"},"action_chains":[{"appstartupid":{"android":"com.ibox.flashlight","ios":"sina","symbian":"0x27000000"},"stype":"gks_appdownload","is_autostart":"true","name":"直接下载","actionid":"1","logo":"http://wap.igexin.com/img/logo.png ","do":"100","is_autoinstall":"false","url":"http://imtt.dd.qq.com/16891/A97684073377D0D4D397FC06F21A3B97.apk"},{"actionid":"100","type":"null"}]}'
 
+# 打开网页   %s为appid
+ACTIONCHAIN_START_ANY_WEB = '{"action":"pushmessage","appkey":"110000","appid":"%s","id":"cmdid","messageid":"11111","taskid":"TASK_ID","push_info":{"action_key":"确定","badge":"1","sound":"cow.caf","message":"message"},"action_chains":[{"stype":"gks_startanyweb","forcescreenon":"true","actionid":"1","blacklist":"","whitelist":"com.UCMobile","do":"100","url":"http://www.igexin.com/"},{"actionid":"100","type":"null"},{"actionid":"100","type":"null"}]}'
 

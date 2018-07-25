@@ -56,13 +56,14 @@ def push_actionchain(cid,actionchain):
     s = requests.session()
     s.post(configs.URL1, data=configs.MYCOOKIE)
     r = s.post(configs.URL2%(cid,quote(str(actionchain))))
-    time.sleep(5)
+    time.sleep(3)
     # print actionchain
-    # print (r)
+    print (r.text)
     list = r.text.split(':')
     # print list
     messageID = list[1].strip()
     taskID = messageID.split('-')[2]
+    print ("taskID = "+ taskID)
     return taskID
 
 # 截图功能
@@ -101,9 +102,10 @@ def verify_file(path,filsname):
     read = os.popen(path).readlines()
     for i in range(0, len(read)):
         # print read[i]
+        # print filsname
         if read[i].strip() == filsname:
             return SUCCESS_CODE
-        return ERROR_CODE
+    return ERROR_CODE
 
 # 双指滑动操作(找到元素左上角的坐标(x,y)，将(x+a,y+c)(x+b,y+c)两个点分别移动到(x+a,y+d)(x+b,y+d)
 def double_slide(driver,elements,a,b,c,d):
@@ -123,3 +125,17 @@ def double_slide(driver,elements,a,b,c,d):
     action3.add(action1, action2)
     action3.perform()
     time.sleep(3)
+
+# 清空通知列表
+def clear_motification(driver):
+    driver.open_notifications()
+    time.sleep(3)
+    ele1 = driver.find_elements_by_id("com.android.systemui:id/clear_all_button")
+    ele2 = driver.find_elements_by_id("com.android.systemui:id/clear_notification")
+    if len(ele1)|len(ele2):
+        for e in ele1:
+            e.click()
+        for e in ele2:
+            e.click()
+    else:driver.open_notifications()
+

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import os,tools,time,action_chain
+import os,tools,time,action_chain,subprocess
 from testbase import testbase
 import sys
 
@@ -20,27 +20,35 @@ class TestAppdownload(testbase):
         pass
 
     def appdownload(self):
+        # 下拉通知栏，清空所有通知
+        tools.clear_motification(self.driver)
+
         # 1.删除文件夹中的文件，删除要安装的APP
-        os.system("adb shell rm -r /sdcard/libs/tmp")
+        subprocess.call('adb shell rm -r /sdcard/libs/tmp', shell=True)
+        # import os
+        # os.system("adb shell rm -r /sdcard/libs/tmp")
         time.sleep(5)
         print "清空tmp文件夹"
         os.system("adb uninstall com.ibox.flashlight")
-        time.sleep(10)
+        time.sleep(5)
         print "删除要安装的APP"
 
         # 2.下发动作链
         taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_APPDOWNLOAD % (self.appid))
 
-        # 3.验证下载文件
-        time.sleep(60)
-        result = tools.verify_file("adb shell ls /sdcard/libs/tmp", NAME + ".pkg")
-        tools.assertEqual(result, tools.SUCCESS_CODE, "下载文件验证失败！")
-        print "下载文件验证成功！"
-
         # 4.截图
+        time.sleep(3)
         self.driver.open_notifications()
         time.sleep(2)
         self.verify_screenshots("appdownload")
+
+
+        # 3.验证下载文件
+        time.sleep(10)
+        result = tools.verify_file("adb shell ls /sdcard/libs/tmp", NAME + ".apk")
+        tools.assertEqual(result, tools.SUCCESS_CODE, "下载文件验证失败！")
+        print "下载文件验证成功！"
+
 
         # 5.下拉通知栏验证通知并点击通知
         self.verify_nitification(NAME)
@@ -64,10 +72,10 @@ class TestAppdownload(testbase):
 
     def silentdownload(self):
         # 1.删除文件夹中的文件，删除要安装的APP
-        os.system("adb shell rm -r /sdcard/libs/tmp")
+        os.popen("adb shell rm -r /sdcard/libs/tmp")
         time.sleep(5)
         print "清空tmp文件夹"
-        os.system("adb uninstall com.ibox.flashlight")
+        os.popen("adb uninstall com.ibox.flashlight")
         time.sleep(10)
         print "删除要安装的APP"
 
@@ -75,8 +83,8 @@ class TestAppdownload(testbase):
         taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_SILENTDOWNLOAD % (self.appid))
 
         # 3.验证下载文件
-        time.sleep(60)
-        result = os.popen("adb shell ls /sdcard/libs/tmp", NAME + ".pkg").readlines()
+        time.sleep(30)
+        result = tools.verify_file("adb shell ls /sdcard/libs/tmp", NAME + ".pkg")
         tools.assertEqual(result, tools.SUCCESS_CODE, "下载文件验证失败！")
         print "下载文件验证成功！"
 

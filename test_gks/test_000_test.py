@@ -21,10 +21,7 @@ class Test(testbase):
 
     def run(self):
         # 下拉通知栏，清空所有通知
-        # self.driver.open_notifications()
-        # ele = self.driver.find_elements_by_id("com.android.systemui:id/clear_all_button")
-        # for e in ele:
-        #     e.click()
+        tools.clear_motification(self.driver)
 
         # 推送动作连
         taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN%(self.appid))
