@@ -24,24 +24,18 @@ class TestAppdownload(testbase):
         tools.clear_motification(self.driver)
 
         # 1.删除文件夹中的文件，删除要安装的APP
-        subprocess.call('adb shell rm -r /sdcard/libs/tmp', shell=True)
-        # import os
-        # os.system("adb shell rm -r /sdcard/libs/tmp")
-        time.sleep(5)
-        print "清空tmp文件夹"
-        os.system("adb uninstall com.ibox.flashlight")
-        time.sleep(5)
-        print "删除要安装的APP"
+        # subprocess.call('adb shell rm -r /sdcard/libs/tmp', shell=True)
+        # # import os
+        # # os.system("adb shell rm -r /sdcard/libs/tmp")
+        # time.sleep(5)
+        # print "清空tmp文件夹"
+        # subprocess.call('adb uninstall com.ibox.flashlight', shell=True)
+        # # os.system("adb uninstall com.ibox.flashlight")
+        # time.sleep(5)
+        # print "删除要安装的APP"
 
         # 2.下发动作链
         taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_APPDOWNLOAD % (self.appid))
-
-        # 4.截图
-        time.sleep(3)
-        self.driver.open_notifications()
-        time.sleep(2)
-        self.verify_screenshots("appdownload")
-
 
         # 3.验证下载文件
         time.sleep(10)
@@ -49,6 +43,11 @@ class TestAppdownload(testbase):
         tools.assertEqual(result, tools.SUCCESS_CODE, "下载文件验证失败！")
         print "下载文件验证成功！"
 
+        # 4.截图
+        time.sleep(3)
+        self.driver.open_notifications()
+        time.sleep(2)
+        self.verify_screenshots("appdownload")
 
         # 5.下拉通知栏验证通知并点击通知
         self.verify_nitification(NAME)
