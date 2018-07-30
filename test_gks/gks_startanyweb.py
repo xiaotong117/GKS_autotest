@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import tools,time,action_chain
+import tools,time,action_chain,os
 from testbase import testbase
 import sys
 
@@ -20,17 +20,23 @@ class Startanyweb(testbase):
 
     def run(self):
         # 1.检查com.UCMobile是否安装，如果没有安装进行安装
-
+        if not self.driver.is_app_installed("com.UCMobile"):
+            print "安装UC浏览器"
+            self.driver.install_app("./UC.apk")
 
         # 2.推送动作连
         taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_START_ANY_WEB%(self.appid))
 
-        # 3.截图过程
+        # 3.验证前台app
         time.sleep(10)
+        activity = os.popen('adb shell "dumpsys activity | grep mFocusedActivity"').read()
+        if "com.UCMobile" in activity:
+            print "网页打开成功！"
+        else:
+            raise AssertionError("网页打开失败！")
+
+        # 4.截图过程
         self.verify_screenshots(CASE)
-
-        # 4.验证前台app，以及地址栏中的地址
-
 
         # 5.查看日志
         self.verify_logs(taskid, FEEDBACK)

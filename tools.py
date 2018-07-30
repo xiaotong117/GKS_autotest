@@ -52,13 +52,13 @@ def assertNotEqual(first, second, msg=''):
     pass
 
 # 推送动作链功能
-def push_actionchain(cid,actionchain):
+def push_actionchain(cid,actionchain,extradata=''):
     s = requests.session()
     s.post(configs.URL1, data=configs.MYCOOKIE)
-    r = s.post(configs.URL2%(cid,quote(str(actionchain))))
+    r = s.post(configs.URL2%(cid,quote(str(actionchain))),quote(str(extradata)))
     time.sleep(3)
     # print actionchain
-    print (r.text)
+    # print (r.text)
     list = r.text.split(':')
     # print list
     messageID = list[1].strip()
@@ -138,4 +138,13 @@ def clear_motification(driver):
         for e in ele2:
             e.click()
     else:driver.open_notifications()
+
+# 向上滑动屏幕
+def swipeUp(driver, t=500, n=1):
+    l = driver.get_window_size()
+    x1 = l['width'] * 0.5     # x坐标
+    y1 = l['height'] * 0.75   # 起始y坐标
+    y2 = l['height'] * 0.25   # 终点y坐标
+    for i in range(n):
+        driver.swipe(x1, y1, x1, y2, t)
 

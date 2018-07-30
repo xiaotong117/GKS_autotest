@@ -36,8 +36,8 @@ class testbase(unittest.TestCase):
                 return SUCCESS_CODE
         return ERROR_CODE
 
-    def verify_actionchain(self,cid,actionchain):
-        taskid = tools.push_actionchain(cid,actionchain)
+    def verify_actionchain(self,cid,actionchain,extradata=''):
+        taskid = tools.push_actionchain(cid,actionchain,extradata)
         tools.assertNotEqual(taskid, tools.NULL, "动作连发送失败！")
         print "动作连发送成功！"
         return taskid
@@ -72,8 +72,8 @@ class testbase(unittest.TestCase):
     #         return ERROR_CODE
 
     # banner通知，点击通知
-    def click_banner_notification(self, driver):
-        title = driver.find_elements_by_id(configs.PKG_name + ':id/getui_notification_icon')
+    def click_banner_notification(self, driver,elementsID):
+        title = driver.find_elements_by_id(elementsID)
         for t in title:
             t.click()
             time.sleep(3)

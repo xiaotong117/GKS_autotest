@@ -10,7 +10,7 @@ sys.setdefaultencoding('utf8')
 
 NAME = "直接下载"
 INSTALL = "安装"
-FEEDBACK = [0,1,10050,10060,10070,10080,10090]
+FEEDBACK = [0,1,10050,10060,10070]
 
 class TestAppdownload(testbase):
     def __init__(self, driver, cid, appid):
@@ -25,20 +25,20 @@ class TestAppdownload(testbase):
 
         # 1.删除文件夹中的文件，删除要安装的APP
         # subprocess.call('adb shell rm -r /sdcard/libs/tmp', shell=True)
-        # # import os
-        # # os.system("adb shell rm -r /sdcard/libs/tmp")
-        # time.sleep(5)
-        # print "清空tmp文件夹"
+        # import os
+        os.system("adb shell rm -r /sdcard/libs/tmp")
+        time.sleep(5)
+        print "清空tmp文件夹"
         # subprocess.call('adb uninstall com.ibox.flashlight', shell=True)
-        # # os.system("adb uninstall com.ibox.flashlight")
-        # time.sleep(5)
-        # print "删除要安装的APP"
+        os.system("adb uninstall com.ibox.flashlight")
+        time.sleep(5)
+        print "删除要安装的APP"
 
         # 2.下发动作链
         taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_APPDOWNLOAD % (self.appid))
 
         # 3.验证下载文件
-        time.sleep(10)
+        time.sleep(30)
         result = tools.verify_file("adb shell ls /sdcard/libs/tmp", NAME + ".apk")
         tools.assertEqual(result, tools.SUCCESS_CODE, "下载文件验证失败！")
         print "下载文件验证成功！"
@@ -53,16 +53,22 @@ class TestAppdownload(testbase):
         self.verify_nitification(NAME)
 
         # 6.点击安装
-        butten = self.driver.find_elements_by_class_name("android.widget.Button")
-        for b in butten:
-            if INSTALL == b.text:
-                b.click()
-                time.sleep(15)
+        # tools.swipeUp(self.driver)
+        # tools.swipeUp(self.driver)
+        # tools.swipeUp(self.driver)
+        # tools.swipeUp(self.driver)
+        # butten = self.driver.find_elements_by_class_name("android.widget.Button")
+        # for b in butten:
+        #     if INSTALL == b.text:
+        #         b.click()
+        #         time.sleep(15)
 
         # 7.检查APP安装完成后是否自动打开
-        if "com.ibox.flashlight" in os.popen('adb shell "dumpsys activity | grep mFocusedActivity"').read() :
-            print "下载文件验证成功！"
-        else:print "下载文件验证失败！"
+        # activity = os.popen('adb shell "dumpsys activity | grep mFocusedActivity"').read()
+        # if "com.ibox.flashlight" in activity:
+        #     print "下载文件验证成功！"
+        # else:
+        #     print "下载文件验证失败！"
 
         # 8.验证回执
         self.verify_logs(taskid, FEEDBACK)
@@ -83,21 +89,27 @@ class TestAppdownload(testbase):
 
         # 3.验证下载文件
         time.sleep(30)
-        result = tools.verify_file("adb shell ls /sdcard/libs/tmp", NAME + ".pkg")
+        result = tools.verify_file("adb shell ls /sdcard/libs/tmp", NAME + ".apk")
         tools.assertEqual(result, tools.SUCCESS_CODE, "下载文件验证失败！")
         print "下载文件验证成功！"
 
         # 4.点击安装
-        butten = self.driver.find_elements_by_class_name("android.widget.Button")
-        for b in butten:
-            if INSTALL == b.text:
-                b.click()
-                time.sleep(15)
+        # tools.swipeUp(self.driver)
+        # tools.swipeUp(self.driver)
+        # tools.swipeUp(self.driver)
+        # tools.swipeUp(self.driver)
+        # butten = self.driver.find_elements_by_class_name("android.widget.Button")
+        # for b in butten:
+        #     if INSTALL == b.text:
+        #         b.click()
+        #         time.sleep(15)
 
         # 5.检查APP安装完成后是否自动打开
-        if "com.ibox.flashlight" in os.popen('adb shell "dumpsys activity | grep mFocusedActivity"').read() :
-            print "下载文件验证成功！"
-        else:print "下载文件验证失败！"
+        # activity = os.popen('adb shell "dumpsys activity | grep mFocusedActivity"').read()
+        # print activity
+        # if "com.ibox.flashlight" in activity:
+        #     print "下载文件验证成功！"
+        # else:print "下载文件验证失败！"
 
         # 6.验证回执
         self.verify_logs(taskid, FEEDBACK)

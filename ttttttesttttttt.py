@@ -32,14 +32,16 @@ appid = appidm.split("=")[1].strip()
 
 print cid
 print appid
+if driver.is_app_installed("com.UCMobile"):
+    print 1
 
 # tools.push_actionchain(cid,action_chain.ACTIONCHAIN_NOTIFY6_1%(appid))
 
 
-
-driver.open_notifications()
-time.sleep(3)
-tools.screenshots(driver,"123")
+#
+# driver.open_notifications()
+# time.sleep(3)
+# tools.screenshots(driver,"123")
 
 
 

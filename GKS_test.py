@@ -13,6 +13,8 @@ from test_gks.test_000_test import Test
 from test_gks.gks_popup import TestPopup
 from test_gks.gks_notification import TestNotification
 from test_gks.gks_download import TestAppdownload
+from test_gks.gks_startanyweb import Startanyweb
+from test_gks.gks_transmission import Test_Transmission
 
 import sys
 
@@ -138,3 +140,41 @@ class GKS_Test(unittest.TestCase):
         # 打印结束日志
         tools.log_end()
 
+    # 测例10：打开网页
+    def test_010_startanyweb(self):
+        # 打印开头日志
+        tools.log_start("test_010_startanyweb")
+        # 运行测例
+        Startanyweb(self.driver,self.cid,self.appid).run()
+        # 打印结束日志
+        tools.log_end()
+
+    # 测例11：热投样式一
+    def test_011_transmission1(self):
+        # 打印开头日志
+        tools.log_start("test_011_transmission1")
+        # 运行测例
+        taskid = time.localtime()
+        Test_Transmission(self.driver,self.cid,self.appid).transmission(1, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid))
+        # 打印结束日志
+        tools.log_end()
+
+    # 测例12：热投样式四
+    def test_012_transmission4(self):
+        # 打印开头日志
+        tools.log_start("test_012_transmission4")
+        # 运行测例
+        taskid = time.localtime()
+        Test_Transmission(self.driver,self.cid,self.appid).transmission(4, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid))
+        # 打印结束日志
+        tools.log_end()
+
+    # 测例13：热投样式五
+    def test_013_transmission5(self):
+        # 打印开头日志
+        tools.log_start("test_013_transmission5")
+        # 运行测例
+        taskid = time.localtime()
+        Test_Transmission(self.driver,self.cid,self.appid).transmission(5, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid))
+        # 打印结束日志
+        tools.log_end()

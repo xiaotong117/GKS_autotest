@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import tools,time,action_chain
+import tools,time,action_chain,configs
 from testbase import testbase
 import sys
 
@@ -34,7 +34,7 @@ class TestNotification(testbase):
         if type == 0 or type == 1:
             self.verify_nitification(TITLE)
         elif type == 4:
-            self.click_banner_notification(self.driver)
+            self.click_banner_notification(self.driver,configs.PKG_name + ':id/getui_notification_icon')
         elif type == 61 or type == 62 or type == 63:
             self.double_pull_notification(self.driver, type, TITLE)
 
