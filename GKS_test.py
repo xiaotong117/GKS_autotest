@@ -14,7 +14,10 @@ from test_gks.gks_popup import TestPopup
 from test_gks.gks_notification import TestNotification
 from test_gks.gks_download import TestAppdownload
 from test_gks.gks_startanyweb import Startanyweb
-from test_gks.gks_transmission import Test_Transmission
+from test_gks.gks_transmission import TestTransmission
+from test_gks.gks_checklayout import TestChecklayout
+
+
 
 import sys
 
@@ -155,7 +158,7 @@ class GKS_Test(unittest.TestCase):
         tools.log_start("test_011_transmission1")
         # 运行测例
         taskid = time.localtime()
-        Test_Transmission(self.driver,self.cid,self.appid).transmission(1, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid))
+        TestTransmission(self.driver,self.cid,self.appid).transmission(1, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid))
         # 打印结束日志
         tools.log_end()
 
@@ -165,7 +168,7 @@ class GKS_Test(unittest.TestCase):
         tools.log_start("test_012_transmission4")
         # 运行测例
         taskid = time.localtime()
-        Test_Transmission(self.driver,self.cid,self.appid).transmission(4, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid))
+        TestTransmission(self.driver,self.cid,self.appid).transmission(4, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid),taskid)
         # 打印结束日志
         tools.log_end()
 
@@ -174,7 +177,17 @@ class GKS_Test(unittest.TestCase):
         # 打印开头日志
         tools.log_start("test_013_transmission5")
         # 运行测例
-        taskid = time.localtime()
-        Test_Transmission(self.driver,self.cid,self.appid).transmission(5, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid))
+        taskid = int(time.time())
+        TestTransmission(self.driver,self.cid,self.appid).transmission(5, action_chain.EXTRADATA_TRANSMISSION1%(taskid,self.appid),taskid)
         # 打印结束日志
         tools.log_end()
+
+    # 测例14：布局检测
+    def test_014_checklayout(self):
+        # 打印开头日志
+        tools.log_start("test_014_checklayout")
+        # 运行测例
+        TestChecklayout(self.driver,self.cid,self.appid).Checklayout()
+        # 打印结束日志
+        tools.log_end()
+
