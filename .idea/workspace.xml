@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd5d3e71-53ef-4f8c-917a-7283d71bbd7e" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/com.smile.gifmaker_4.24.apk" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/GKS_test.py" afterPath="$PROJECT_DIR$/GKS_test.py" />
       <change beforePath="$PROJECT_DIR$/action_chain.py" afterPath="$PROJECT_DIR$/action_chain.py" />
-      <change beforePath="$PROJECT_DIR$/configs.py" afterPath="$PROJECT_DIR$/configs.py" />
       <change beforePath="$PROJECT_DIR$/test_gks/gks_download.py" afterPath="$PROJECT_DIR$/test_gks/gks_download.py" />
-      <change beforePath="$PROJECT_DIR$/test_gks/gks_notification.py" afterPath="$PROJECT_DIR$/test_gks/gks_notification.py" />
-      <change beforePath="$PROJECT_DIR$/test_gks/gks_startanyweb.py" afterPath="$PROJECT_DIR$/test_gks/gks_startanyweb.py" />
-      <change beforePath="$PROJECT_DIR$/test_result.properties" afterPath="$PROJECT_DIR$/test_result.properties" />
-      <change beforePath="$PROJECT_DIR$/testbase.py" afterPath="$PROJECT_DIR$/testbase.py" />
-      <change beforePath="$PROJECT_DIR$/tools.py" afterPath="$PROJECT_DIR$/tools.py" />
-      <change beforePath="$PROJECT_DIR$/ttttttesttttttt.py" afterPath="$PROJECT_DIR$/ttttttesttttttt.py" />
+      <change beforePath="$PROJECT_DIR$/test_gks/gks_updateapp.py" afterPath="$PROJECT_DIR$/test_gks/gks_updateapp.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,8 +62,8 @@
       <file leaf-file-name="tools.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="54" column="4" lean-forward="false" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+            <state relative-caret-position="137">
+              <caret line="85" column="96" lean-forward="false" selection-start-line="85" selection-start-column="80" selection-end-line="85" selection-end-column="96" />
               <folding>
                 <element signature="e#43#73#0" expanded="true" />
               </folding>
@@ -80,8 +74,8 @@
       <file leaf-file-name="action_chain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/action_chain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="23">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -91,20 +85,30 @@
         <entry file="file://$PROJECT_DIR$/configs.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
-              <caret line="15" column="86" lean-forward="true" selection-start-line="15" selection-start-column="86" selection-end-line="15" selection-end-column="86" />
+              <caret line="15" column="86" lean-forward="false" selection-start-line="15" selection-start-column="86" selection-end-line="15" selection-end-column="86" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testbase.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testbase.py">
+      <file leaf-file-name="GKS_test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GKS_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="74" column="16" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="33" />
+            <state relative-caret-position="3644">
+              <caret line="160" column="12" lean-forward="false" selection-start-line="160" selection-start-column="12" selection-end-line="160" selection-end-column="12" />
               <folding>
-                <element signature="e#43#92#0" expanded="true" />
+                <element signature="e#49#77#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gks_startanyweb.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_gks/gks_startanyweb.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -112,20 +116,10 @@
       <file leaf-file-name="gks_download.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_gks/gks_download.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="707">
-              <caret line="116" column="27" lean-forward="true" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GKS_test.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GKS_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="167" column="73" lean-forward="false" selection-start-line="167" selection-start-column="73" selection-end-line="167" selection-end-column="73" />
+            <state relative-caret-position="2461">
+              <caret line="110" column="29" lean-forward="false" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
               <folding>
-                <element signature="e#49#77#0" expanded="true" />
+                <element signature="e#43#87#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -134,10 +128,30 @@
       <file leaf-file-name="gks_transmission.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_gks/gks_transmission.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+            <state relative-caret-position="-483">
+              <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gks_notification.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_gks/gks_notification.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gks_updateapp.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_gks/gks_updateapp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1265">
+              <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
               <folding>
-                <element signature="e#43#76#0" expanded="true" />
+                <element signature="e#43#87#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,7 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PKG_name</find>
       <find>driver</find>
       <find>QAPOnrmt479FxOHbMfQ5o8</find>
       <find>URL2</find>
@@ -184,6 +197,7 @@
       <find>find_id</find>
       <find>adb</find>
       <find>base64</find>
+      <find>is_app_installed</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,17 +231,19 @@
         <option value="$PROJECT_DIR$/../SDK耗电测试/电量测试_电流平均值计算.py" />
         <option value="$PROJECT_DIR$/../SDK/dianliu_average.py" />
         <option value="$PROJECT_DIR$/../SDK/dddddd.py" />
-        <option value="$PROJECT_DIR$/test_gks/gks_download.py" />
         <option value="$PROJECT_DIR$/ttttttesttttttt.py" />
         <option value="$PROJECT_DIR$/test_gks/gks_startanyweb.py" />
         <option value="$PROJECT_DIR$/test_gks/gks_hot_investment.py" />
         <option value="$PROJECT_DIR$/configs.py" />
         <option value="$PROJECT_DIR$/tools.py" />
-        <option value="$PROJECT_DIR$/action_chain.py" />
         <option value="$PROJECT_DIR$/testbase.py" />
         <option value="$PROJECT_DIR$/test_gks/gks_notification.py" />
+        <option value="$PROJECT_DIR$/test_gks/gks_checklayout.py" />
         <option value="$PROJECT_DIR$/test_gks/gks_transmission.py" />
         <option value="$PROJECT_DIR$/GKS_test.py" />
+        <option value="$PROJECT_DIR$/test_gks/gks_download.py" />
+        <option value="$PROJECT_DIR$/action_chain.py" />
+        <option value="$PROJECT_DIR$/test_gks/gks_updateapp.py" />
       </list>
     </option>
   </component>
@@ -305,12 +321,13 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\PycharmProjects\GKS_autotest" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\GKS_autotest" />
       <recent name="C:\Users\ABC\PycharmProjects\GKS_autotest" />
       <recent name="C:\Users\Administrator\Desktop\Auto117\test_gks" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\PycharmProjects\GKS_autotest" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -548,7 +565,21 @@
       <option name="project" value="LOCAL" />
       <updated>1532440496015</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="透传">
+      <created>1532959802611</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1532959802611</updated>
+    </task>
+    <task id="LOCAL-00018" summary="布局检测">
+      <created>1533125303393</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1533125303393</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -599,13 +630,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20735608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -665,23 +696,17 @@
     <MESSAGE value="4" />
     <MESSAGE value="修复大图展开，完成download用例" />
     <MESSAGE value="55" />
-    <option name="LAST_COMMIT_MESSAGE" value="55" />
+    <MESSAGE value="透传" />
+    <MESSAGE value="布局检测" />
+    <option name="LAST_COMMIT_MESSAGE" value="布局检测" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/screenshots/test_000_test_20180725_104405.png" />
-    <entry file="file://$PROJECT_DIR$/screenshots/test_000_test_20180725_110543.png" />
-    <entry file="file://C:/Python27/Lib/site-packages/appium/webdriver/mobilecommand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/gks_popup_20180725_110649.png" />
     <entry file="file://$PROJECT_DIR$/screenshots/gks_popup_20180725_112631.png" />
     <entry file="file://$PROJECT_DIR$/screenshots/test_000_test_20180725_113524.png" />
     <entry file="file://$PROJECT_DIR$/screenshots/test_000_test_20180725_113357.png" />
@@ -760,13 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_gks/test_000_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="10" column="22" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_reports/report_20180730_125519.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -806,14 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="86" lean-forward="true" selection-start-line="15" selection-start-column="86" selection-end-line="15" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Run_GKS_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -822,74 +832,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_gks/gks_download.py">
+    <entry file="file://$PROJECT_DIR$/test_gks/test_000_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="707">
-          <caret line="116" column="27" lean-forward="true" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/action_chain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="205">
+          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding>
+            <element signature="e#43#73#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="54" column="4" lean-forward="false" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+        <state relative-caret-position="137">
+          <caret line="85" column="96" lean-forward="false" selection-start-line="85" selection-start-column="80" selection-end-line="85" selection-end-column="96" />
           <folding>
             <element signature="e#43#73#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_gks/gks_startanyweb.py">
+    <entry file="file://$PROJECT_DIR$/test_gks/gks_checklayout.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="38" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testbase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="74" column="16" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="33" />
+        <state relative-caret-position="205">
+          <caret line="13" column="10" lean-forward="true" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
           <folding>
-            <element signature="e#43#92#0" expanded="true" />
+            <element signature="e#43#81#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_gks/gks_notification.py">
+    <entry file="file://$PROJECT_DIR$/../test1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-483">
-          <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_gks/gks_transmission.py">
+    <entry file="file://$PROJECT_DIR$/../demo - 副本.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-          <folding>
-            <element signature="e#43#76#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="345">
+          <caret line="15" column="75" lean-forward="true" selection-start-line="15" selection-start-column="75" selection-end-line="15" selection-end-column="75" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GKS_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="167" column="73" lean-forward="false" selection-start-line="167" selection-start-column="73" selection-end-line="167" selection-end-column="73" />
+        <state relative-caret-position="3644">
+          <caret line="160" column="12" lean-forward="false" selection-start-line="160" selection-start-column="12" selection-end-line="160" selection-end-column="12" />
           <folding>
             <element signature="e#49#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testbase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="e#43#92#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="86" lean-forward="false" selection-start-line="15" selection-start-column="86" selection-end-line="15" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_gks/gks_startanyweb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_gks/gks_download.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2461">
+          <caret line="110" column="29" lean-forward="false" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
+          <folding>
+            <element signature="e#43#87#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_gks/gks_transmission.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/action_chain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_gks/gks_notification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_gks/gks_updateapp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1265">
+          <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+          <folding>
+            <element signature="e#43#87#0" expanded="true" />
           </folding>
         </state>
       </provider>

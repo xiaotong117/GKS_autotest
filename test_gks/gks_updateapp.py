@@ -10,7 +10,7 @@ sys.setdefaultencoding('utf8')
 
 NAME = "快手"
 INSTALL = "安装"
-FEEDBACK = [0,1,10050,10060,10070]
+FEEDBACK = [1,10060,40021,40022,40023,40024,40025,40026,40210,40211]
 
 class TestUpdateapp(testbase):
     def __init__(self, driver, cid, appid):
@@ -19,59 +19,44 @@ class TestUpdateapp(testbase):
         self.appid = appid
         pass
 
-    def appdownload(self):
+    def updateapp(self):
         # 下拉通知栏，清空所有通知
         tools.clear_motification(self.driver)
 
-        # 1.删除文件夹中的文件，删除要安装的APP
-        # subprocess.call('adb shell rm -r /sdcard/libs/tmp', shell=True)
-        # import os
-        os.system("adb shell rm -r /sdcard/libs/tmp")
+        # 1.安装低版本快手
+        if self.driver.is_app_installed("com.UCMobile"):
+            os.system("adb uninstall com.smile.gifmaker")
+            time.sleep(5)
+        self.driver.install_app("./UC.apk")
         time.sleep(5)
-        print "清空tmp文件夹"
-        # subprocess.call('adb uninstall com.ibox.flashlight', shell=True)
-        os.system("adb uninstall com.ibox.flashlight")
-        time.sleep(5)
-        print "删除要安装的APP"
+        print "安装低版本快手"
 
         # 2.下发动作链
-        taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_APPDOWNLOAD % (self.appid))
+        taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_UPDATEAPP%(self.appid))
 
         # 3.验证下载文件
-        time.sleep(30)
+        time.sleep(60)
         result = tools.verify_file("adb shell ls /sdcard/libs/tmp", NAME + ".apk")
         tools.assertEqual(result, tools.SUCCESS_CODE, "下载文件验证失败！")
         print "下载文件验证成功！"
 
-        # 4.截图
+        # 4.下拉通知栏截图
         time.sleep(3)
         self.driver.open_notifications()
         time.sleep(2)
-        self.verify_screenshots("appdownload")
+        self.verify_screenshots("updateapp_notification")
 
-        # 5.下拉通知栏验证通知并点击通知
+        # 5.验证通知并点击通知
         self.verify_nitification(NAME)
+        time.sleep(5)
+        self.verify_screenshots("updateapp_popup")
 
         # 6.点击安装
-        # tools.swipeUp(self.driver)
-        # tools.swipeUp(self.driver)
-        # tools.swipeUp(self.driver)
-        # tools.swipeUp(self.driver)
-        # butten = self.driver.find_elements_by_class_name("android.widget.Button")
-        # for b in butten:
-        #     if INSTALL == b.text:
-        #         b.click()
-        #         time.sleep(15)
+        time.sleep(5)
 
-        # 7.检查APP安装完成后是否自动打开
-        # activity = os.popen('adb shell "dumpsys activity | grep mFocusedActivity"').read()
-        # if "com.ibox.flashlight" in activity:
-        #     print "下载文件验证成功！"
-        # else:
-        #     print "下载文件验证失败！"
 
-        # 8.验证回执
-        self.verify_logs(taskid, FEEDBACK)
+        # 7.验证回执
+        self.verify_logs(taskid1, FEEDBACK)
 
-        print("普通下载 验证成功！")
+        print("app更新 验证成功！")
 

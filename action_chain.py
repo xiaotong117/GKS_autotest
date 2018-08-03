@@ -54,3 +54,6 @@ EXTRADATA_TRANSMISSION5 = '{"action":"notification","taskid":"%s","messageid":"M
 
 # 布局判断 %s为appid、布局类型
 ACTIONCHAIN_CHECKLAYOUT = '{"action":"pushmessage","appkey":"110000","appid":"%s","id":"cmdid","messageid":"11111","taskid":"TASK_ID","push_info":{"action_key":"确定","badge":"1","sound":"cow.caf","message":"message"},"action_chains":[{"do_failed":"1002","stype":"gks_checklayout","actionid":"1","layoutType":%s,"do":"1001"},{"notifyStyle":1,"second_icon_url":"@package:com.getui.demo.dev","logo_url":"http://s1.hao123img.com/res/images/search_logo/image.png","stype":"notification","actionid":"1001","logo":"demo.png","text":"正确","do":"100","title":"布局检测","timestamp":true},{"notifyStyle":1,"second_icon_url":"@package:com.getui.demo.dev","logo_url":"http://s1.hao123img.com/res/images/search_logo/image.png","stype":"notification","actionid":"1002","logo":"demo.png","text":"错误","do":"100","title":"布局检测","timestamp":true},{"actionid":"100","type":"null"}]}'
+
+# app更新 %s为appid
+ACTIONCHAIN_UPDATEAPP = ''
