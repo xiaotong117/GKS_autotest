@@ -16,6 +16,9 @@ from test_gks.gks_download import TestAppdownload
 from test_gks.gks_startanyweb import Startanyweb
 from test_gks.gks_transmission import TestTransmission
 from test_gks.gks_checklayout import TestChecklayout
+from test_gks.gks_updateapp import TestUpdateapp
+from test_gks.gks_gwa import Gwa
+from test_gks.gks_filescan import Filescan
 
 
 
@@ -188,6 +191,33 @@ class GKS_Test(unittest.TestCase):
         tools.log_start("test_014_checklayout")
         # 运行测例
         TestChecklayout(self.driver,self.cid,self.appid).Checklayout()
+        # 打印结束日志
+        tools.log_end()
+
+    # 测例15：app更新
+    def test_015_updateapp(self):
+        # 打印开头日志
+        tools.log_start("test_015_updateapp")
+        # 运行测例
+        TestUpdateapp(self.driver,self.cid,self.appid).updateapp()
+        # 打印结束日志
+        tools.log_end()
+
+    # 测例16：地震预警
+    def test_016_gwa(self):
+        # 打印开头日志
+        tools.log_start("test_016_gwa")
+        # 运行测例
+        Gwa(self.driver,self.cid,self.appid).gwa()
+        # 打印结束日志
+        tools.log_end()
+
+    # 测例17：文件查找
+    def test_017_filescan(self):
+        # 打印开头日志
+        tools.log_start("test_017_filescan")
+        # 运行测例
+        Filescan(self.driver,self.cid,self.appid).run()
         # 打印结束日志
         tools.log_end()
 

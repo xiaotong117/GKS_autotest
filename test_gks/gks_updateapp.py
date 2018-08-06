@@ -10,6 +10,7 @@ sys.setdefaultencoding('utf8')
 
 NAME = "快手"
 INSTALL = "安装"
+PADTASKID = "hAWQ13snc6Alk1dmCR2pW8"
 FEEDBACK = [1,10060,40021,40022,40023,40024,40025,40026,40210,40211]
 
 class TestUpdateapp(testbase):
@@ -32,7 +33,7 @@ class TestUpdateapp(testbase):
         print "安装低版本快手"
 
         # 2.下发动作链
-        taskid = self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_UPDATEAPP%(self.appid))
+        self.verify_actionchain(self.cid, action_chain.ACTIONCHAIN_UPDATEAPP%(self.appid))
 
         # 3.验证下载文件
         time.sleep(60)
@@ -51,12 +52,12 @@ class TestUpdateapp(testbase):
         time.sleep(5)
         self.verify_screenshots("updateapp_popup")
 
-        # 6.点击安装
+        # 6.点击安装并截图
         time.sleep(5)
-
+        self.verify_nitification("更新")
 
         # 7.验证回执
-        self.verify_logs(taskid1, FEEDBACK)
+        self.verify_logs(PADTASKID, FEEDBACK)
 
         print("app更新 验证成功！")
 
